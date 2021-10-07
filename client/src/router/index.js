@@ -76,6 +76,12 @@ const routes = [
     beforeEnter: requireAuthenticated
   },
   {
+    path: '/profile/my_campaigns/:slug',
+    name: 'edit-campaign',
+    component: () => import('../views/NewCampaign.vue'),
+    beforeEnter: requireAuthenticated
+  },
+  {
     path: "/logout",
     name: 'logout',
     beforeEnter: redirectLogout

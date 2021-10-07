@@ -15,7 +15,7 @@
                     <span class="date">July 2, 2020</span>
                 </div>
                 <h2 class="heading mb-3">
-                  <router-link :to="{ name: 'campaign', params:{ slug : campaign.slug}}">{{ campaign.name }}</router-link>
+                  <router-link :to="{ name: 'edit-campaign', params:{ slug : campaign.slug}}">{{ campaign.name }}</router-link>
                 </h2>
                 <p>{{ campaign.excerpt }}</p>
               </div>

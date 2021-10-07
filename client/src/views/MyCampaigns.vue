@@ -12,19 +12,20 @@
                     <div class="row">
                         <div class="col-lg-12" v-for="(campaign,k) in campaigns" :key="k">
                             <div class="post-entry d-md-flex small-horizontal mb-5">
-                            <div class="me-md-5 thumbnail mb-3 mb-md-0">
-                                <router-link :to="{ name: 'campaign', params:{ slug : campaign.slug}}">
-                                    <img :src="campaignPath + 'thumbnails/' +campaign.image" @error="setAltImage" alt="Image" class="img-fluid"/>
-                                </router-link>
-                            </div>
-                            <div class="content">
-                                <div class="post-meta mb-3">
-                                    <span>By {{ campaign.created_by.name }}</span> —
-                                    <span class="date">July 2, 2020</span>
+                                <div class="me-md-5 thumbnail mb-3 mb-md-0">
+                                    <router-link :to="{ name: 'campaign', params:{ slug : campaign.slug}}">
+                                        <img :src="campaignPath + 'thumbnails/' +campaign.image" @error="setAltImage" alt="Image" class="img-fluid"/>
+                                    </router-link>
                                 </div>
-                                <h2 class="heading"><router-link :to="{ name: 'campaign', params:{ slug : campaign.slug}}">{{ campaign.name }}</router-link></h2>
-                                <p>{{ campaign.excerpt }}</p>
-                            </div>
+                                <div class="content">
+                                    <div class="post-meta mb-3">
+                                        <span>By {{ campaign.created_by.name }}</span> —
+                                        <span class="date">July 2, 2020</span>
+                                        <router-link :to="{ name: 'edit-campaign', params: { slug:campaign.slug } }" class="float-right">Edit</router-link>
+                                    </div>
+                                    <h2 class="heading"><router-link :to="{ name: 'campaign', params:{ slug : campaign.slug}}">{{ campaign.name }}</router-link></h2>
+                                    <p>{{ campaign.excerpt }}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -64,3 +65,10 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+    .content {
+        width: 100%;
+        text-align: left;
+    }
+</style>
