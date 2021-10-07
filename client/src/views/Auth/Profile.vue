@@ -2,7 +2,7 @@
     <div class="section pt-5">
         <div class="container">
             <div class="row">
-                <user-menu/>
+                <!-- <user-menu/> -->
                 <div class="col-lg-8 ">
                     <div class="row mb-5">
                         <div class="col-lg-12">

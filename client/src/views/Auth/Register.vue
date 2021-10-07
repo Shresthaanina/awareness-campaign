@@ -1,5 +1,5 @@
 <template>
-    <div class="section">
+    <!-- <div class="section">
         <div class="container">
             <form @submit.prevent="register">
                 <div class="mb-3">
@@ -29,7 +29,51 @@
                 </div>
             </form>
         </div>
-    </div>
+    </div> -->
+    <section class="login first grey">
+        <div class="container">
+            <div class="box-wrapper">				
+                <div class="box box-border">
+                    <div class="box-body">
+                        <h4>Register</h4>
+                        <form @submit.prevent="register">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" v-model="user.name" class="form-control" placeholder="Name">
+                                <span class="invalid-feedback" style="display:block;" role="alert" v-if="db_error && db_error.name">{{ db_error.name[0] }}</span>
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" v-model="user.email" class="form-control" placeholder="Email">
+                                <span class="invalid-feedback" style="display:block;" role="alert" v-if="db_error && db_error.email">{{ db_error.email[0] }}</span>
+                            </div>
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input type="text" v-model="user.phone_no" class="form-control" placeholder="Phone Number">
+                                <span class="invalid-feedback" style="display:block;" role="alert" v-if="db_error && db_error.phone_no">{{ db_error.phone_no[0] }}</span>
+                            </div>
+                            <div class="form-group">
+                                <label class="fw">Password</label>
+                                <input type="password" v-model="user.password" class="form-control" placeholder="Password">
+                                <span class="invalid-feedback" style="display:block;" role="alert" v-if="db_error && db_error.password">{{ db_error.password[0] }}</span>
+                            </div>
+                            <div class="form-group">
+                                <label class="fw">Confirm Password</label>
+                                <input type="password" v-model="user.confirm_password" class="form-control" placeholder="Confirm Password">
+                                <span class="invalid-feedback" style="display:block;" role="alert" v-if="db_error && db_error.confirm_password">{{ db_error.confirm_password[0] }}</span>
+                            </div>
+                            <div class="form-group text-right">
+                                <button type="submit" class="btn btn-primary btn-block">Register</button>
+                            </div>
+                            <div class="form-group text-center">
+                                <span class="text-muted">Already have an account?</span> <router-link :to="{ name: 'login' }">Login</router-link>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </template>
 
 <script>

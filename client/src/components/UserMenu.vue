@@ -13,30 +13,3 @@
         </ul>
     </div>
 </template>
-
-<style>
-    .site-menu-body {
-        position: relative;
-        padding: 0 20px 20px 20px;
-        padding-bottom: 150px;
-    }
-    .site-menu-body .site-nav-wrap{
-        padding: 0;
-        margin: 0;
-        list-style: none;
-        position: relative;
-    }
-    .site-menu-body .site-nav-wrap > li {
-        display: block;
-        position: relative;
-        float: left;
-        width: 100%;
-    }
-    .site-menu-body .site-nav-wrap > li > a {
-        padding: 5px 20px;
-        display: block;
-        position: relative;
-        padding-left: 20px;
-        font-size: 14px;
-    }
-</style>

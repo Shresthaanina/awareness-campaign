@@ -1,121 +1,100 @@
 <template>
-    <div>
-    <!-- <div class="site-mobile-menu site-navbar-target">
-        <div class="site-mobile-menu-header">
-        <div class="site-mobile-menu-close">
-            <span class="icofont-close js-menu-toggle"></span>
-        </div>
-        </div>
-        <div class="site-mobile-menu-body">
-        <ul class="site-nav-wrap">
-            <li class="active"><router-link to="/">Home</router-link></li>
-            <li class="has-children">
-            <span
-                class="arrow-collapse collapsed"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapseItem0"
-            ></span
-            ><a href="categories.html">Categories</a>
-            <ul class="collapse" id="collapseItem0">
-                <li><a href="#">Travel</a></li>
-                <li><a href="#">Food</a></li>
-                <li><a href="#">Technology</a></li>
-                <li><a href="#">Business</a></li>
-                <li class="has-children">
-                <span
-                    class="arrow-collapse collapsed"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#collapseItem1"
-                ></span
-                ><a href="#">Dropdown</a>
-                <ul class="collapse" id="collapseItem1">
-                    <li><a href="#">Sub Menu One</a></li>
-                    <li><a href="#">Sub Menu Two</a></li>
-                    <li><a href="#">Sub Menu Three</a></li>
-                </ul>
-                </li>
-            </ul>
+    <!-- <div>
+    <ul>
+        <template v-if="isAuthenticated">
+            <li>
+                <router-link :to="{ name: 'profile' }">Account</router-link>
             </li>
-            <li><a href="#">Travel</a></li>
-            <li><a href="#">Food</a></li>
-            <li><a href="#">Technology</a></li>
-            <li><a href="#">Business</a></li>
-        </ul>
-        </div>
+            <li>
+                <router-link :to="{ name: 'logout' }">Logout</router-link>
+            </li>
+        </template>
+        <template v-else>
+        <li>
+            <router-link :to="{ name: 'login' }">Login</router-link>
+        </li>
+        <li>
+            <router-link :to="{ name: 'register' }">Register</router-link>
+        </li>
+        </template>
+        
+    </ul>
     </div> -->
-    <nav class="site-nav">
-        <div class="container">
-        <div class="site-navigation">
-            <div class="row">
-            <div class="col-md-6 text-center order-1 order-md-2 mb-3 mb-md-0">
-                <router-link to="/" class="logo m-0 text-uppercase">Awareness Campaign</router-link>
-            </div>
-            <div class="col-md-3 order-3 order-md-1">
-                
-            </div>
-            <div class="col-md-3 text-end order-2 order-md-3 mb-3 mb-md-0">
-                <div class="d-flex">
-                <ul class="list-unstyled social me-auto">
-                    <template v-if="isAuthenticated">
-                        <li>
-                            <router-link :to="{ name: 'profile' }">Account</router-link>
-                        </li>
-                        <li>
-                            <router-link :to="{ name: 'logout' }">Logout</router-link>
-                        </li>
-                    </template>
-                    <template v-else>
-                    <li>
-                        <router-link :to="{ name: 'login' }">Login</router-link>
-                    </li>
-                    <li>
-                        <router-link :to="{ name: 'register' }">Register</router-link>
-                    </li>
-                    </template>
-                    <!-- <li>
-                    <a href="#"><span class="icon-twitter"></span></a>
-                    </li>
-                    <li>
-                    <a href="#"><span class="icon-facebook"></span></a>
-                    </li>
-                    <li>
-                    <a href="#"><span class="icon-instagram"></span></a>
-                    </li> -->
-                </ul>
-                <!-- <a href="#" class="burger ms-auto float-end site-menu-toggle js-menu-toggle d-inline-block" data-toggle="collapse" data-target="#main-navbar">
-                    <span></span>
-                </a> -->
+    <header class="primary">
+        <div class="firstbar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-12">
+                        <div class="brand">
+                            <router-link :to="{ name: 'home' }">
+                                <img src="@/assets/images/logo.png" alt="Magz Logo">
+                            </router-link>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <form class="search" autocomplete="off">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="text" name="q" class="form-control" placeholder="Type something here">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-primary"><i class="ion-search"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-3 col-sm-12 text-right">
+                        <ul class="nav-icons">
+                            <template v-if="isAuthenticated">
+                                <li><router-link :to="{ name: 'profile' }"><i class="ion-person-add"></i><div>Account</div></router-link></li>
+                                <li><router-link :to="{ name: 'logout' }"><i class="ion-person"></i><div>Logout</div></router-link></li>
+                            </template>
+                            <template v-else>
+                                <li><router-link :to="{ name: 'register' }"><i class="ion-person-add"></i><div>Register</div></router-link></li>
+                                <li><router-link :to="{ name: 'login' }"><i class="ion-person"></i><div>Login</div></router-link></li>
+                            </template>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            </div>
-            <ul class="js-clone-nav d-none d-lg-inline-none text-start site-menu float-end">
-            <li class="active"><a href="index.html">Home</a></li>
-            <li class="has-children">
-                <a href="categories.html">Categories</a>
-                <ul class="dropdown">
-                <li><a href="#">Travel</a></li>
-                <li><a href="#">Food</a></li>
-                <li><a href="#">Technology</a></li>
-                <li><a href="#">Business</a></li>
-                <li class="has-children">
-                    <a href="#">Dropdown</a>
-                    <ul class="dropdown">
-                    <li><a href="#">Sub Menu One</a></li>
-                    <li><a href="#">Sub Menu Two</a></li>
-                    <li><a href="#">Sub Menu Three</a></li>
+        </div>
+
+        <!-- Start nav -->
+        <nav class="menu">
+            <div class="container">
+                <div class="brand">
+                    <a href="#">
+                        <img src="@/assets/images/logo.png" alt="Magz Logo">
+                    </a>
+                </div>
+                <div class="mobile-toggle">
+                    <a href="#" data-toggle="menu" data-target="#menu-list"><i class="ion-navicon-round"></i></a>
+                </div>
+                <div class="mobile-toggle">
+                    <a href="#" data-toggle="sidebar" data-target="#sidebar"><i class="ion-ios-arrow-left"></i></a>
+                </div>
+                <div id="menu-list">
+                    <ul class="nav-list">
+                        <li><a href="category.html">Standard</a></li>
+                        <li><a href="category.html">About Us</a></li>
+                        <li><a href="category.html">Item 2</a></li>
+                        <li><a href="category.html">Item 3</a></li>
+                        <li class="dropdown magz-dropdown"><a href="#">My Account <i class="ion-ios-arrow-right"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><router-link :to="{ name: 'profile' }"><i class="icon ion-person"></i> Profile</router-link></li>
+                                <li><router-link :to="{ name: 'my-campaigns' }"><i class="icon ion-heart"></i> My Campaigns</router-link></li>
+                                <li><router-link :to="{ name: 'new-campaign' }"><i class="icon ion-chatbox"></i> New Campaign</router-link></li>
+                                <li><a href="#"><i class="icon ion-key"></i> Change Password</a></li>
+                                <li class="divider"></li>
+                                <li><router-link :to="{ name: 'logout' }"><i class="icon ion-log-out"></i> Logout</router-link></li>
+                            </ul>
+                        </li>
                     </ul>
-                </li>
-                </ul>
-            </li>
-            <li><a href="#">Travel</a></li>
-            <li><a href="#">Food</a></li>
-            <li><a href="#">Technology</a></li>
-            <li><a href="#">Business</a></li>
-            </ul>
-        </div>
-        </div>
-    </nav>
-    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- End nav -->
+    </header>
 </template>
 
 <script>

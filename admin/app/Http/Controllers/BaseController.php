@@ -20,7 +20,7 @@ class BaseController extends Controller
         $img->save($full_path.$filename);
 
         // resize the image to a height of 100 and constrain aspect ratio (auto width)
-        $img->resize(400, 275, function ($constraint) {
+        $img->resize(300, 215, function ($constraint) {
             $constraint->aspectRatio();
         })->save($full_path.'thumbnails/'.$filename);
 
