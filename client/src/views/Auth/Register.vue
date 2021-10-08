@@ -48,7 +48,7 @@
                                 <span class="invalid-feedback" style="display:block;" role="alert" v-if="db_error && db_error.email">{{ db_error.email[0] }}</span>
                             </div>
                             <div class="form-group">
-                                <label>Username</label>
+                                <label>Phone Number</label>
                                 <input type="text" v-model="user.phone_no" class="form-control" placeholder="Phone Number">
                                 <span class="invalid-feedback" style="display:block;" role="alert" v-if="db_error && db_error.phone_no">{{ db_error.phone_no[0] }}</span>
                             </div>

@@ -5,6 +5,7 @@ import store from './store'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import Vuex from "vuex"
+import moment from 'moment'
 
 // plugins
 import VueSweetalert2 from 'vue-sweetalert2';
@@ -45,11 +46,12 @@ import '@/assets/js/e-magz.js'
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import CKEditor from '@ckeditor/ckeditor5-vue';
 
-createApp(App)
+const app = createApp(App)
 .use(store)
 .use(router)
 .use(VueAxios, axios)
 .use(Vuex)
 .use(VueSweetalert2)
 .use( CKEditor )
+.use( moment )
 .mount('#app')

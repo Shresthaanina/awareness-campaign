@@ -103,7 +103,7 @@
                         </div>
                     </aside>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-8" v-if="!campaignLoading">
                     <!-- <ol class="breadcrumb">
                         <li><a href="#">Home</a></li>
                         <li class="active">Film</li>
@@ -112,16 +112,16 @@
                         <header>
                             <h1>{{ campaign.name }}</h1>
                             <ul class="details">
-                                <li>Posted on 31 December, 2016</li>
+                                <li>Posted on {{ formatDate(campaign.start_date) }}</li>
                                 <li><a>Film</a></li>
-                                <li>By <a href="#">John Doe</a></li>
+                                <li>By <a href="#">{{ campaign.created_by.name }}</a></li>
                             </ul>
                         </header>
                         <div class="main">
                             <p>{{ campaign.excerpt }}</p>
                             <div class="featured">
                                 <figure>
-                                    <img src="@/assets/images/news/img01.jpg">
+                                    <img :src="campaignPath + campaign.image">
                                 </figure>
                             </div>
 
@@ -259,6 +259,7 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex"
+import * as moment from "moment/moment";
 export default {
     name: "Campaign",
     data() {
@@ -279,7 +280,12 @@ export default {
 
         setAltImage(e){
             e.target.src = "https://i.picsum.photos/id/691/300/215.jpg?hmac=y8rHB4E2US1Q8hpawpEAGFrgDqj6j0DqZp9mUhdZDZM"
-        }
+        },
+        formatDate(val){
+			if(val){
+				return moment(val).format('ll');
+			}
+		}
     }
 }
 </script>

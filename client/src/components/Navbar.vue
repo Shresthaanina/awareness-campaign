@@ -50,8 +50,8 @@
                                 <li><router-link :to="{ name: 'logout' }"><i class="ion-person"></i><div>Logout</div></router-link></li>
                             </template>
                             <template v-else>
-                                <li><router-link :to="{ name: 'register' }"><i class="ion-person-add"></i><div>Register</div></router-link></li>
                                 <li><router-link :to="{ name: 'login' }"><i class="ion-person"></i><div>Login</div></router-link></li>
+                                <li><router-link :to="{ name: 'register' }"><i class="ion-person-add"></i><div>Register</div></router-link></li>
                             </template>
                         </ul>
                     </div>

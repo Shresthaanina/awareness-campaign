@@ -23,7 +23,7 @@
 						<!-- <div class="category">
 						<a href="category.html">Film</a>
 						</div> -->
-						<div class="time">December 26, 2016</div>
+						<div class="time">{{ formatDate(campaign.start_date) }}</div>
 					</div>
 					<h1><router-link :to="{ name: 'campaign', params:{ slug : campaign.slug}}">{{ campaign.name }}</router-link></h1>
 					<p>
@@ -164,6 +164,7 @@
 </template>
 <script>
 import { mapGetters, mapActions } from "vuex";
+import * as moment from "moment/moment";
 export default {
     name:"CampaignList",
     data() {
@@ -183,7 +184,12 @@ export default {
         ]),
         setAltImage(e){
             e.target.src = "https://i.picsum.photos/id/691/300/215.jpg?hmac=y8rHB4E2US1Q8hpawpEAGFrgDqj6j0DqZp9mUhdZDZM"
-        }
+        },
+		formatDate(val){
+			if(val){
+				return moment(val).format('ll');
+			}
+		}
     }
 }
 </script>
