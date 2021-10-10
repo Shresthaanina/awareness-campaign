@@ -25,10 +25,6 @@ import '@/assets/css/demo.css'
 
 require("bootstrap")
 import "bootstrap/dist/css/bootstrap.min.css";
-// import jQuery from 'jquery'
-// global.jQuery = jQuery
-// global.$ = jQuery
-
 global.jQuery = require('jquery');
 var $ = global.jQuery;
 window.$ = $;

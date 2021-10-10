@@ -30,10 +30,10 @@
 						{{ campaign.excerpt }}
 					</p>
 					<footer>
-						<a href="#" class="love"><i class="ion-android-favorite-outline"></i> <div>237</div></a>
+						<!-- <a href="#" class="love"><i class="ion-android-favorite-outline"></i> <div>237</div></a> -->
 						<router-link class="btn btn-primary more" :to="{ name: 'campaign', params:{ slug : campaign.slug}}">
-						<div>More</div>
-						<div><i class="ion-ios-arrow-thin-right"></i></div>
+							<div>More</div>
+							<div><i class="ion-ios-arrow-thin-right"></i></div>
 						</router-link>
 					</footer>
 					</div>
@@ -138,23 +138,6 @@
 					</div>
 					</div>
 				</article>
-				</div>
-			</aside>
-			<aside>
-				<div class="aside-body">
-				<form class="newsletter">
-					<div class="icon">
-					<i class="ion-ios-email-outline"></i>
-					<h1>Newsletter</h1>
-					</div>
-					<div class="input-group">
-					<input type="email" class="form-control email" placeholder="Your mail">
-					<div class="input-group-btn">
-						<button class="btn btn-primary"><i class="ion-paper-airplane"></i></button>
-					</div>
-					</div>
-					<p>By subscribing you will receive new articles in your email.</p>
-				</form>
 				</div>
 			</aside>
 			</div>

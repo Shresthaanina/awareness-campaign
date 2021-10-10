@@ -1,16 +1,17 @@
 <template>
-    <div class="section pt-5">
-        <div class="container">
+    <section class="category">
+		<div class="container">
             <div class="row">
-                <user-menu />
-                <div class="col-lg-8 ">
-                    <div class="row mb-5">
-                        <div class="col-lg-12">
-                            <h2>New Campaign</h2>
+                <div class="col-md-8 text-left">
+                    <div class="row">
+                        <div class="col-md-12">
+                        <h1 class="page-title">All Campaigns</h1>
+                        <p class="page-subtitle">Showing all campaigns</p>
                         </div>
                     </div>
+                    <div class="line"></div>
                     <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-md-12">
                             <form @submit.prevent="submitCampaign">
                                 <div class="row mb-3">
                                     <label for="" class="col-sm-2 col-form-label">Name</label>
@@ -65,7 +66,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="offset-sm-2 col-md-2">
-                                        <button type="submit" class="btn btn-primary" :disabled="campaignLoading">Update</button>
+                                        <button type="submit" class="btn btn-primary" :disabled="campaignLoading">{{ campaign.id != '' ? 'Update' : 'Create' }}</button>
                                     </div>
                                 </div>
                             </form>
@@ -74,7 +75,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </template>
 <script>
 import UserMenu from "@/components/UserMenu"
@@ -85,6 +86,7 @@ export default {
     data() {
         return {
             campaign: {
+                id:'',
                 name:'',
                 location:'',
                 excerpt:'',
@@ -104,9 +106,28 @@ export default {
         ...mapGetters("campaign", ["campaignLoading"])
     },
 
+    created(){
+        let campaignSlug = this.$route.params.slug;
+        if(campaignSlug){
+            this.fetchCampaignDetail(campaignSlug)
+            .then(res => {
+                this.campaign.id = res.id
+                this.campaign.name = res.name
+                this.campaign.location = res.location
+                this.campaign.excerpt = res.excerpt
+                this.campaign.description = res.description
+                this.campaign.start_date = res.start_date
+                this.campaign.end_date = res.end_date
+                this.campaign.imageUrl = this.campaignPath + res.image
+            });
+        }
+    },
+
     methods: {
         ...mapActions('campaign', [
             'createCampaign',
+            'updateCampaign',
+            'fetchCampaignDetail',
         ]),
 
         fileSelected(e){
@@ -134,21 +155,41 @@ export default {
                     formData.append('image', this.campaign.image, this.campaign.image.name);
                 }
             }
-            this.createCampaign(formData)
-            .then(res => {
-                this.$swal({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    title: res.message,
-                    icon: "success", //built in icons: success, warning, error, info
-                    timer: 4000, //timeOut for auto-close
-                });
-                this.$router.push({name: 'my-campaigns'})
-            })
-            .catch(error => {
-                this.db_errors = error.data.errors;
-            })
+            if(this.campaign.id != ''){
+                formData.append('_method', 'PATCH')
+                let campaignId = this.campaign.id
+                this.updateCampaign({ id:campaignId, formData:formData })
+                .then(res => {
+                    this.$swal({
+                        toast: true,
+                        position: 'bottom-end',
+                        showConfirmButton: false,
+                        title: res.message,
+                        icon: "success", //built in icons: success, warning, error, info
+                        timer: 4000, //timeOut for auto-close
+                    });
+                    this.$router.push({name: 'my-campaigns'})
+                })
+                .catch(error => {
+                    this.db_errors = error.data.errors;
+                })
+            }else {
+                this.createCampaign(formData)
+                .then(res => {
+                    this.$swal({
+                        toast: true,
+                        position: 'bottom-end',
+                        showConfirmButton: false,
+                        title: res.message,
+                        icon: "success", //built in icons: success, warning, error, info
+                        timer: 4000, //timeOut for auto-close
+                    });
+                    this.$router.push({name: 'my-campaigns'})
+                })
+                .catch(error => {
+                    this.db_errors = error.data.errors;
+                })
+            }
         }
     }
 }

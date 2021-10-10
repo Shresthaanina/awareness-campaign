@@ -11,7 +11,7 @@ export default {
     return session.post("/api/v1/campaigns", formData);
   },
   updateCampaign(id, formData) {
-    return session.patch("/api/v1/campaigns/" + id, formData);
+    return session.post("/api/v1/campaigns/" + id, formData);
   },
   deleteCampaign(id) {
     return session.delete("/api/v1/campaigns/" + id);

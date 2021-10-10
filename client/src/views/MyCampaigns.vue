@@ -21,14 +21,14 @@
 						<!-- <div class="category">
 						<a href="category.html">Film</a>
 						</div> -->
-						<div class="time">December 26, 2016</div>
+						<div class="time">{{ formatDate(campaign.start_date) }}</div>
 					</div>
 					<h1><router-link :to="{ name: 'campaign', params:{ slug : campaign.slug}}">{{ campaign.name }}</router-link></h1>
 					<p>
 						{{ campaign.excerpt }}
 					</p>
 					<footer>
-						<a href="#" class="love"><i class="ion-android-favorite-outline"></i> <div>237</div></a>
+						<!-- <a href="#" class="love"><i class="ion-android-favorite-outline"></i> <div>237</div></a> -->
 						<router-link class="btn btn-primary more" :to="{ name: 'edit-campaign', params: { slug:campaign.slug } }">
 						<div>Edit</div>
 						<div><i class="ion-ios-arrow-thin-right"></i></div>
@@ -126,6 +126,7 @@
 <script>
 import UserMenu from "@/components/UserMenu"
 import { mapGetters, mapActions } from "vuex"
+import * as moment from "moment/moment";
 export default {
     components: { UserMenu },
     data() {
@@ -149,7 +150,13 @@ export default {
 
         setAltImage(e){
             e.target.src = "https://i.picsum.photos/id/830/400/275.jpg?hmac=atIskX6qKhoQCHr5ZnRJ1MYykoX1zcecOpR11Vwjolk"
-        }
+        },
+
+		formatDate(val){
+			if(val){
+				return moment(val).format('ll');
+			}
+		}
     }
 }
 </script>

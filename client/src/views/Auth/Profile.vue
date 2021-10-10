@@ -1,16 +1,15 @@
 <template>
-    <div class="section pt-5">
-        <div class="container">
+    <section class="category">
+		<div class="container">
             <div class="row">
-                <!-- <user-menu/> -->
-                <div class="col-lg-8 ">
-                    <div class="row mb-5">
-                        <div class="col-lg-12">
-                            <h2>Profile</h2>
+                <div class="col-md-8 text-left">
+                    <div class="row">
+                        <div class="col-md-12">
+                        <p class="page-subtitle">My Campaigns</p>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-md-12">
                             <form @submit.prevent="updateProfileData">
                                 <div class="form-group row mb-3">
                                     <label for="" class="col-sm-4 col-form-label">Image</label>
@@ -51,7 +50,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </template>
 <script>
 import UserMenu from "@/components/UserMenu"

@@ -25,7 +25,7 @@
                                     <th>ID</th>
                                     <th>Name</th>
                                     <th>Location</th>
-                                    <th>No. of Participants</th>
+                                    <th>Start Date</th>
                                     <th>Created By</th>
                                     <th>Status</th>
                                     <th>Action</th>
@@ -54,23 +54,23 @@
             { data: 'id', name: 'id' },
             { data: 'name', name: 'name', searchable: true },
             { data: 'location', name: 'location', searchable: true },
-            { data: 'participants_count', name: 'participants_count', searchable: true },
+            { data: 'start_date', name: 'start_date', searchable: true },
             { data: 'created_by', name: 'created_by', searchable: true,
                 render: function ( data, type, row, meta ) {
                     return data.name;
                 }
             },
-            { data: 'is_active', name: 'is_active', searchable: false,
+            { data: 'is_published', name: 'is_published', searchable: false,
                 render: function ( data, type, row, meta ) {
-                    var is_active, status;
+                    var is_published, status;
                     if(data == '1'){
-                        is_active = 'checked';
-                        status = 'Active';
+                        is_published = 'checked';
+                        status = 'Published';
                     }else {
-                        status = 'Inactive';
+                        status = 'Pending';
                     }
                     return `<div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                                <input type="checkbox" class="custom-control-input" id="customSwitch3` + row.id + `" `+ is_active +`>
+                                <input type="checkbox" class="custom-control-input" id="customSwitch3` + row.id + `" `+ is_published +`>
                                 <label class="custom-control-label" for="customSwitch3` + row.id + `">`+ status +`</label>
                             </div>`;
                 }
@@ -86,7 +86,7 @@
             url: "{{ url('/campaigns/status') }}/"+data.id,
             type: "PATCH",
             data: {
-                'is_active' : data.is_active == '1' ? '0' : '1',
+                'is_published' : data.is_published == '1' ? '0' : '1',
                 "_token"    : "{{ csrf_token() }}",
              },
             success:function(data){

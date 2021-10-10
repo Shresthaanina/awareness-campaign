@@ -23,7 +23,7 @@ class CampaignController extends Controller
     public function index(Request $request)
     {
         if($request->ajax()):
-            $campaigns = $this->campaign::with('createdBy','participants')->withCount('participants')->get();
+            $campaigns = $this->campaign::with('createdBy')->get();
             return Datatables($campaigns)->make(true);
         else:
             return view('campaign.index');
@@ -106,7 +106,7 @@ class CampaignController extends Controller
     public function updateStatus(Request $request, $id){
         $campaign = $this->campaign::findOrFail($id);
         if($campaign):
-            $campaign->update(['is_active' => $request->is_active]);
+            $campaign->update(['is_published' => $request->is_published]);
             return response()->json(['status' => Response::$statusTexts[Response::HTTP_OK],'status_code' => Response::HTTP_OK],200);
         else:
             return response()->json(['status' => Response::$statusTexts[Response::HTTP_NOT_FOUND],'status_code' => Response::HTTP_NOT_FOUND],404);

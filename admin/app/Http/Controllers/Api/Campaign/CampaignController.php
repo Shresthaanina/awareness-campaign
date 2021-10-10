@@ -27,7 +27,7 @@ class CampaignController extends Controller
     {
         $campaigns = $this->campaign::with('createdBy')
                                     ->select('id','slug','name','image','excerpt','start_date','created_by')
-                                    ->where('is_active','1')
+                                    ->where('is_published','1')
                                     ->orderBy('created_at','desc')
                                     ->get();
         return $campaigns;
@@ -82,7 +82,7 @@ class CampaignController extends Controller
     public function show($slug)
     {
         $campaign = $this->campaign::with('createdBy')->where('slug', $slug)
-                                    ->where('is_active','1')
+                                    ->where('is_published','1')
                                     ->firstOrFail();
         return $campaign;
     }

@@ -18,13 +18,13 @@ class CreateCampaignsTable extends Migration
             $table->string('name', 100)->index();
             $table->string('slug')->index();
             $table->string('image', 150)->nullable();
-            $table->enum('is_active', [1,0])->default(0);
+            $table->enum('is_published', [2,1,0])->default(0);
+            $table->enum('is_featured', [1,0])->default(0);
             $table->string('excerpt', 250)->nullable();
             $table->longText('description')->nullable();
             $table->string('location', 200)->nullable();
             $table->dateTime('start_date')->nullable();
             $table->dateTime('end_date')->nullable();
-            $table->tinyInteger('likes')->default(0);
             $table->bigInteger('created_by')->unsigned()->index();
             $table->foreign('created_by')->references('id')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
 
