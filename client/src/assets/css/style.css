@@ -233,7 +233,7 @@ body {
   font-family: 'Lato', sans-serif;
   font-weight: 300;
   color: #191E21;
-  font-size: 1.4em;
+  font-size: 14px;
 }
 
 h1, h2, h3, h4, h5, h6,
@@ -4132,4 +4132,3 @@ blockquote {
   z-index: 2001;
 }
 
-/*# sourceMappingURL=style.css.map */

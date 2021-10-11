@@ -12,20 +12,22 @@ import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import Pagination from 'v-pagination-3';
 
-// import '@/assets/scripts/bootstrap/bootstrap.min.css'
+
+
+require("bootstrap")
+import "bootstrap/dist/css/bootstrap.min.css";
 import '@/assets/scripts/ionicons/css/ionicons.min.css'
 import '@/assets/scripts/toast/jquery.toast.min.css'
 import '@/assets/scripts/owlcarousel/dist/assets/owl.carousel.min.css'
 import '@/assets/scripts/owlcarousel/dist/assets/owl.theme.default.min.css'
 import '@/assets/scripts/magnific-popup/dist/magnific-popup.css'
 // import '@/assets/scripts/sweetalert/dist/sweetalert.css'
+
 import '@/assets/css/style.css'
 import '@/assets/css/skins/all.css'
 import '@/assets/css/demo.css'
 
 
-require("bootstrap")
-import "bootstrap/dist/css/bootstrap.min.css";
 global.jQuery = require('jquery');
 var $ = global.jQuery;
 window.$ = $;
