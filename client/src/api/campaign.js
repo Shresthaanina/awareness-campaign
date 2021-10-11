@@ -4,6 +4,9 @@ export default {
   fetchCampaigns(page = 1) {
     return session.get("api/v1/campaigns?page=" + page);
   },
+  fetchRecentCampaigns() {
+    return session.get("api/v1/recent_campaigns");
+  },
   getCampaignDetail(slug) {
     return session.get("api/v1/campaigns/" + slug);
   },

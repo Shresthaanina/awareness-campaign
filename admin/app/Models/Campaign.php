@@ -64,7 +64,7 @@ class Campaign extends Model
     }
 
     public function createdBy(){
-        return $this->belongsTo('App\Models\User','created_by')->select('id','name','image');
+        return $this->belongsTo('App\Models\User','created_by')->select('id','name','email','image');
     }
 
     public function category(){

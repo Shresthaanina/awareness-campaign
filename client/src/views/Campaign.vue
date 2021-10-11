@@ -11,97 +11,7 @@
                             </figure>
                         </div>
                     </aside>
-                    <aside>
-                        <h1 class="aside-title">Recent Post</h1>
-                        <div class="aside-body">
-                            <article class="article-fw">
-                                <div class="inner">
-                                    <figure>
-                                        <a href="single.html">												
-                                            <img src="@/assets/images/news/img16.jpg">
-                                        </a>
-                                    </figure>
-                                    <div class="details">
-                                        <h1><a href="single.html">Lorem Ipsum Dolor Sit Amet Consectetur Adipisicing Elit</a></h1>
-                                        <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                        tempor incididunt ut labore et dolore magna aliqua.
-                                        </p>
-                                        <div class="detail">
-                                            <div class="time">December 26, 2016</div>
-                                            <div class="category"><a href="category.html">Lifestyle</a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <div class="line"></div>
-                            <article class="article-mini">
-                                <div class="inner">
-                                    <figure>
-                                        <a href="single.html">
-                                            <img src="@/assets/images/news/img05.jpg">
-                                        </a>
-                                    </figure>
-                                    <div class="padding">
-                                        <h1><a href="single.html">Duis aute irure dolor in reprehenderit in voluptate velit</a></h1>
-                                        <div class="detail">
-                                            <div class="category"><a href="category.html">Lifestyle</a></div>
-                                            <div class="time">December 22, 2016</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="article-mini">
-                                <div class="inner">
-                                    <figure>
-                                        <a href="single.html">
-                                            <img src="@/assets/images/news/img02.jpg">
-                                        </a>
-                                    </figure>
-                                    <div class="padding">
-                                        <h1><a href="single.html">Fusce ullamcorper elit at felis cursus suscipit</a></h1>
-                                        <div class="detail">
-                                            <div class="category"><a href="category.html">Travel</a></div>
-                                            <div class="time">December 21, 2016</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="article-mini">
-                                <div class="inner">
-                                    <figure>
-                                        <a href="single.html">
-                                            <img src="@/assets/images/news/img13.jpg">
-                                        </a>
-                                    </figure>
-                                    <div class="padding">
-                                        <h1><a href="single.html">Duis aute irure dolor in reprehenderit in voluptate velit</a></h1>
-                                        <div class="detail">
-                                            <div class="category"><a href="category.html">International</a></div>
-                                            <div class="time">December 20, 2016</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                        </div>
-                    </aside>
-                    <aside>
-                        <div class="aside-body">
-                            <form class="newsletter">
-                                <div class="icon">
-                                    <i class="ion-ios-email-outline"></i>
-                                    <h1>Newsletter</h1>
-                                </div>
-                                <div class="input-group">
-                                    <input type="email" class="form-control email" placeholder="Your mail">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-primary"><i class="ion-paper-airplane"></i></button>
-                                    </div>
-                                </div>
-                                <p>By subscribing you will receive new articles in your email.</p>
-                            </form>
-                        </div>
-                    </aside>
+                    <recent-campaigns />
                 </div>
                 <div class="col-md-8" v-if="!campaignLoading">
                     <!-- <ol class="breadcrumb">
@@ -113,7 +23,7 @@
                             <h1>{{ campaign.name }}</h1>
                             <ul class="details">
                                 <li>Posted on {{ formatDate(campaign.start_date) }}</li>
-                                <li><a>Film</a></li>
+                                <!-- <li><a>Film</a></li> -->
                                 <li>By <a href="#">{{ campaign.created_by.name }}</a></li>
                             </ul>
                         </header>
@@ -163,7 +73,7 @@
                         </ul>
                     </div>
                     <div class="line">
-                        <div>Author</div>
+                        <div>Organizer</div>
                     </div>
                     <div class="author">
                         <figure>
@@ -172,84 +82,8 @@
                         <div class="details">
                             <!-- <div class="job">Web Developer</div> -->
                             <h3 class="name">{{ campaign.created_by.name }}</h3>
-                            <p>Nulla sagittis rhoncus nisi, vel gravida ante. Nunc lobortis condimentum elit, quis porta ipsum rhoncus vitae. Curabitur magna leo, porta vel fringilla gravida, consectetur in libero. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p>
-                            <ul class="social trp sm">
-                                <li>
-                                    <a href="#" class="facebook">
-                                        <svg><rect/></svg>
-                                        <i class="ion-social-facebook"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="twitter">
-                                        <svg><rect/></svg>
-                                        <i class="ion-social-twitter"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="youtube">
-                                        <svg><rect/></svg>
-                                        <i class="ion-social-youtube"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="googleplus">
-                                        <svg><rect/></svg>
-                                        <i class="ion-social-googleplus"></i>
-                                    </a>
-                                </li>
-                            </ul>
+                            <p>Email: {{ campaign.created_by.email }}</p>
                         </div>
-                    </div>
-                    
-                    <div class="line thin"></div>
-                    <div class="comments">
-                        <h2 class="title">1 Responses <a href="#">Write a Response</a></h2>
-                        <div class="comment-list">
-                            <div class="item">
-                                <div class="user">                                
-                                    <figure>
-                                        <img src="@/assets/images/img01.jpg">
-                                    </figure>
-                                    <div class="details">
-                                        <h5 class="name">Mark Otto</h5>
-                                        <div class="time">24 Hours</div>
-                                        <div class="description">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore <a href="#">magna</a> aliqua. Ut enim ad minim veniam,
-                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.
-                                        </div>
-                                        <footer>
-                                            <a href="#">Reply</a>
-                                        </footer>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <form class="row">
-                            <div class="col-md-12">
-                                <h3 class="title">Leave Your Response</h3>
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="name">Name <span class="required"></span></label>
-                                <input type="text" id="name" name="" class="form-control">
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="email">Email <span class="required"></span></label>
-                                <input type="email" id="email" name="" class="form-control">
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="website">Website</label>
-                                <input type="url" id="website" name="" class="form-control">
-                            </div>
-                            <div class="form-group col-md-12">
-                                <label for="message">Response <span class="required"></span></label>
-                                <textarea class="form-control" name="message" placeholder="Write your response ..."></textarea>
-                            </div>
-                            <div class="form-group col-md-12">
-                                <button class="btn btn-primary">Send Response</button>
-                            </div>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -260,8 +94,10 @@
 <script>
 import { mapGetters, mapActions } from "vuex"
 import * as moment from "moment/moment";
+import RecentCampaigns from "@/components/RecentCampaigns"
 export default {
     name: "Campaign",
+    components: { RecentCampaigns },
     data() {
         return {
             campaignPath: process.env.VUE_APP_CAMPAIGN_PATH

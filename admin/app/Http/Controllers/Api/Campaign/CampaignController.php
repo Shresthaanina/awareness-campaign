@@ -150,4 +150,13 @@ class CampaignController extends Controller
             return response()->json(['status' => Res::$statusTexts[Res::HTTP_NOT_FOUND],'status_code' => Res::HTTP_NOT_FOUND],404);
         }
     }
+
+    public function recent(){
+        $campaigns = $this->campaign::with('createdBy')
+            ->select('id','slug','name','image','excerpt','start_date','created_by')
+            ->where('is_published','1')
+            ->orderBy('created_at','desc')
+            ->limit(5)->get();
+        return $campaigns;
+    }
 }

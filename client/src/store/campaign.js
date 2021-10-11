@@ -2,6 +2,7 @@ import campaign from "@/api/campaign";
 
 const initialState = {
   campaigns: [],
+  recentCampaigns: [],
   campaign: {
     id: null,
     name: null,
@@ -14,6 +15,7 @@ const initialState = {
 
 const getters = {
   campaigns: state => state.campaigns,
+  recentCampaigns: state => state.recentCampaigns,
   campaign: state => state.campaign,
   campaignLoading: state => state.campaignLoading,
   categoryLoading: state => state.categoryLoading,
@@ -32,6 +34,22 @@ const actions = {
         })
         .catch(error => {
           commit('campaignLoading', false);
+          reject(error.response);
+        });
+    });
+  },
+
+  fetchRecentCampaigns({ commit }) {
+    commit('recentCampaignLoading', true);
+    return new Promise((resolve, reject) => {
+        campaign.fetchRecentCampaigns()
+        .then(res => { 
+          commit('setRecentCampaigns', res.data);
+          commit('recentCampaignLoading', false);
+          resolve(res.data);
+        })
+        .catch(error => {
+          commit('recentCampaignLoading', false);
           reject(error.response);
         });
     });
@@ -117,6 +135,9 @@ const mutations = {
   setCampaigns(state, value) {
     state.campaigns = value;
   },
+  setRecentCampaigns(state, value) {
+    state.recentCampaigns = value;
+  },
   setCategoryList(state, value) {
     state.categoryList = value;
   },
@@ -125,6 +146,9 @@ const mutations = {
   },
   campaignLoading(state, value){
     state.campaignLoading = value;
+  },
+  recentCampaignLoading(state, value){
+    state.recentCampaignLoading = value;
   },
   categoryLoading(state, value){
     state.categoryLoading = value;
