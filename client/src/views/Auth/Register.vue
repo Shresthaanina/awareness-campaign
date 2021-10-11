@@ -94,22 +94,22 @@ export default {
     methods: {
         register() { 
             this.isLoading = true
+            this.db_error = []
             this.$store.dispatch("auth/register", this.user)
             .then( res => {
-                this.loading=false
-                this.$router.push({ name: "Login"})
-                console.log(res)
                 this.$swal({
                     toast: true,
-                    position: 'top-end',
+                    position: 'bottom-end',
                     showConfirmButton: false,
                     title: 'User registered successfully',
                     icon: "success", //built in icons: success, warning, error, info
                     timer: 4000, //timeOut for auto-close
                 });
+                this.isLoading=false
+                this.$router.push({ name: "login"})
             })
             .catch(error=> {
-                this.loading=false
+                this.isLoading=false
                 this.db_error = error.errors
             })
         }
