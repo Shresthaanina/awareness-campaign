@@ -8,26 +8,46 @@ const initialState = {
     image: null,
   },
   campaignLoading: false,
+  categoryLoading: false,
+  categoryList: [],
 };
 
 const getters = {
   campaigns: state => state.campaigns,
   campaign: state => state.campaign,
   campaignLoading: state => state.campaignLoading,
+  categoryLoading: state => state.categoryLoading,
+  categoryList: state => state.categoryList,
 };
 
 const actions = {
-  fetchCampaigns({ commit }) {
+  fetchCampaigns({ commit }, page) {
     commit('campaignLoading', true);
     return new Promise((resolve, reject) => {
-        campaign.fetchCampaigns()
-        .then(res => {
-          commit('setCampaigns', res.data);
+        campaign.fetchCampaigns(page)
+        .then(res => { 
+          commit('setCampaigns', res.data.data);
           commit('campaignLoading', false);
           resolve(res.data);
         })
         .catch(error => {
           commit('campaignLoading', false);
+          reject(error.response);
+        });
+    });
+  },
+
+  getCategoryList({ commit }) {
+    commit('categoryLoading', true);
+    return new Promise((resolve, reject) => {
+        campaign.categoryList()
+        .then(res => {
+          commit('setCategoryList', res.data);
+          commit('categoryLoading', false);
+          resolve(res.data);
+        })
+        .catch(error => {
+          commit('categoryLoading', false);
           reject(error.response);
         });
     });
@@ -97,11 +117,17 @@ const mutations = {
   setCampaigns(state, value) {
     state.campaigns = value;
   },
+  setCategoryList(state, value) {
+    state.categoryList = value;
+  },
   setCampaign(state, value) {
     state.campaign = value;
   },
   campaignLoading(state, value){
     state.campaignLoading = value;
+  },
+  categoryLoading(state, value){
+    state.categoryLoading = value;
   }
 };
 

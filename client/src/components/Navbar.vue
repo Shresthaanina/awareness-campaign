@@ -75,10 +75,8 @@
                 </div>
                 <div id="menu-list">
                     <ul class="nav-list">
-                        <li><a href="category.html">Standard</a></li>
-                        <li><a href="category.html">About Us</a></li>
-                        <li><a href="category.html">Item 2</a></li>
-                        <li><a href="category.html">Item 3</a></li>
+                        <li><a href="javascript::void(0)" @click="filterCampaignList()">All</a></li>
+                        <li v-for="(category,c) in categoryList" :key="c"><a href="javascript::void(0)" @click="filterCampaignList(category.id)">{{ category.name }}</a></li>
                         <li class="dropdown magz-dropdown"><a href="#">My Account <i class="ion-ios-arrow-right"></i></a>
                             <ul class="dropdown-menu">
                                 <li><router-link :to="{ name: 'profile' }"><i class="icon ion-person"></i> Profile</router-link></li>
@@ -98,10 +96,23 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
     computed: {
         ...mapGetters("auth", ["accountDetail","isAuthenticated"]),
+        ...mapGetters("campaign", ["categoryList"]),
     },
+    created(){
+        this.getCategoryList()
+    },
+    methods: {
+        ...mapActions('campaign', [
+            'getCategoryList',
+            'fetchCampaigns'
+        ]),
+        filterCampaignList(category_id){
+            this.fetchCampaigns(category_id)
+        }
+    }
 }
 </script>

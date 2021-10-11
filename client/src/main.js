@@ -10,6 +10,7 @@ import moment from 'moment'
 // plugins
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
+import Pagination from 'v-pagination-3';
 
 // import '@/assets/scripts/bootstrap/bootstrap.min.css'
 import '@/assets/scripts/ionicons/css/ionicons.min.css'
@@ -50,4 +51,5 @@ const app = createApp(App)
 .use(VueSweetalert2)
 .use( CKEditor )
 .use( moment )
+.component('pagination', Pagination)
 .mount('#app')

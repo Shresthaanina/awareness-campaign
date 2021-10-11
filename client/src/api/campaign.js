@@ -1,8 +1,8 @@
 import session from "./session";
 
 export default {
-  fetchCampaigns() {
-    return session.get("api/v1/campaigns");
+  fetchCampaigns(page = 1) {
+    return session.get("api/v1/campaigns?page=" + page);
   },
   getCampaignDetail(slug) {
     return session.get("api/v1/campaigns/" + slug);
@@ -15,5 +15,8 @@ export default {
   },
   deleteCampaign(id) {
     return session.delete("/api/v1/campaigns/" + id);
+  },
+  categoryList() {
+    return session.get("/api/v1/categories");
   },
 };

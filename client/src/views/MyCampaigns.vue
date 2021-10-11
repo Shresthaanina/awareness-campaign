@@ -38,7 +38,13 @@
 				</div>
 				</article>
 				<div class="col-md-12 text-center">
-				<ul class="pagination">
+					<pagination v-model="campaignData.current_page" 
+						:records="campaignData.total" 
+						:per-page="campaignData.per_page" 
+						@paginate="updateCurrentPage($event)"
+						:options="{ theme:'bootstrap4', chunksNavigation: 'scroll', edgeNavigation: true  }"
+					/>
+				<!-- <ul class="pagination">
 					<li class="prev"><a href="#"><i class="ion-ios-arrow-left"></i></a></li>
 					<li class="active"><a href="#">1</a></li>
 					<li><a href="#">2</a></li>
@@ -49,7 +55,7 @@
 				</ul>
 				<div class="pagination-help-text">
 					Showing 8 results of 776 &mdash; Page 1
-				</div>
+				</div> -->
 				</div>
 			</div>
 			</div>
@@ -124,14 +130,17 @@
 </template>
 
 <script>
-import UserMenu from "@/components/UserMenu"
 import { mapGetters, mapActions } from "vuex"
 import * as moment from "moment/moment";
 export default {
-    components: { UserMenu },
     data() {
         return {
-            campaignPath: process.env.VUE_APP_CAMPAIGN_PATH
+            campaignPath: process.env.VUE_APP_CAMPAIGN_PATH,
+			campaignData: {
+				total: 0,
+				per_page:0,
+				current_page:1
+			},
         }
     },
     
@@ -141,6 +150,9 @@ export default {
 
     created(){
         this.fetchCampaigns()
+		.then(res => {
+			this.campaignData = res;
+		})
     },
 
     methods: {
@@ -156,6 +168,13 @@ export default {
 			if(val){
 				return moment(val).format('ll');
 			}
+		},
+
+		updateCurrentPage(selectedPage){
+			this.fetchCampaigns(selectedPage)
+			.then(res => {
+				this.campaignData = res;
+			})
 		}
     }
 }

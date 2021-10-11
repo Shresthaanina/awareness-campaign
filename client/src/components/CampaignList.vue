@@ -11,47 +11,55 @@
 			</div>
 			<div class="line"></div>
 			<div class="row">
+				<template v-if="!campaignLoading">
 				<article class="col-md-12 article-list" v-for="(campaign,k) in campaigns" :key="k">
-				<div class="inner">
-					<figure>
-						<router-link :to="{ name: 'campaign', params:{ slug : campaign.slug}}">
-						<img :src="campaignPath + 'thumbnails/' +campaign.image" @error="setAltImage">
-					</router-link>
-					</figure>
-					<div class="details">
-					<div class="detail">
-						<!-- <div class="category">
-						<a href="category.html">Film</a>
-						</div> -->
-						<div class="time">{{ formatDate(campaign.start_date) }}</div>
-					</div>
-					<h1><router-link :to="{ name: 'campaign', params:{ slug : campaign.slug}}">{{ campaign.name }}</router-link></h1>
-					<p>
-						{{ campaign.excerpt }}
-					</p>
-					<footer>
-						<!-- <a href="#" class="love"><i class="ion-android-favorite-outline"></i> <div>237</div></a> -->
-						<router-link class="btn btn-primary more" :to="{ name: 'campaign', params:{ slug : campaign.slug}}">
-							<div>More</div>
-							<div><i class="ion-ios-arrow-thin-right"></i></div>
+					<div class="inner">
+						<figure>
+							<router-link :to="{ name: 'campaign', params:{ slug : campaign.slug}}">
+							<img :src="campaignPath + 'thumbnails/' +campaign.image" @error="setAltImage">
 						</router-link>
-					</footer>
+						</figure>
+						<div class="details">
+						<div class="detail">
+							<!-- <div class="category">
+							<a href="category.html">Film</a>
+							</div> -->
+							<div class="time">{{ formatDate(campaign.start_date) }}</div>
+						</div>
+						<h1><router-link :to="{ name: 'campaign', params:{ slug : campaign.slug}}">{{ campaign.name }}</router-link></h1>
+						<p>
+							{{ campaign.excerpt }}
+						</p>
+						<footer>
+							<!-- <a href="#" class="love"><i class="ion-android-favorite-outline"></i> <div>237</div></a> -->
+							<router-link class="btn btn-primary more" :to="{ name: 'campaign', params:{ slug : campaign.slug}}">
+								<div>More</div>
+								<div><i class="ion-ios-arrow-thin-right"></i></div>
+							</router-link>
+						</footer>
+						</div>
 					</div>
-				</div>
 				</article>
+				</template>
 				<div class="col-md-12 text-center">
-				<ul class="pagination">
-					<li class="prev"><a href="#"><i class="ion-ios-arrow-left"></i></a></li>
-					<li class="active"><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">...</a></li>
-					<li><a href="#">97</a></li>
-					<li class="next"><a href="#"><i class="ion-ios-arrow-right"></i></a></li>
-				</ul>
-				<div class="pagination-help-text">
-					Showing 8 results of 776 &mdash; Page 1
-				</div>
+					<pagination v-model="campaignData.current_page" 
+						:records="campaignData.total" 
+						:per-page="campaignData.per_page" 
+						@paginate="updateCurrentPage($event)"
+						:options="{ theme:'bootstrap4', chunksNavigation: 'scroll', edgeNavigation: true  }"
+					/>
+					<!-- <ul class="pagination">
+						<li class="prev"><a href="#"><i class="ion-ios-arrow-left"></i></a></li>
+						<li class="active"><a href="#">1</a></li>
+						<li><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#">...</a></li>
+						<li><a href="#">97</a></li>
+						<li class="next"><a href="#"><i class="ion-ios-arrow-right"></i></a></li>
+					</ul>
+					<div class="pagination-help-text">
+						Showing {{ campaignData.from }} to {{ campaignData.to }} of {{ campaignData.total }} records &mdash; Page {{ campaignData.current_page }}
+					</div> -->
 				</div>
 			</div>
 			</div>
@@ -152,14 +160,25 @@ export default {
     name:"CampaignList",
     data() {
         return {
-            campaignPath: process.env.VUE_APP_CAMPAIGN_PATH
+            campaignPath: process.env.VUE_APP_CAMPAIGN_PATH,
+			campaignData: {
+				total: 0,
+				per_page:0,
+				current_page:1
+			},
         }
     },
     computed: {
-        ...mapGetters("campaign", ["campaigns"])
+        ...mapGetters("campaign", ["campaigns","campaignLoading"]),
+		// page(){
+		// 	return this.campaignData ? this.campaignData.current_page : 1
+		// }
     },
     created(){
         this.fetchCampaigns()
+		.then(res => {
+			this.campaignData = res;
+		})
     },
     methods: {
         ...mapActions('campaign', [
@@ -172,6 +191,12 @@ export default {
 			if(val){
 				return moment(val).format('ll');
 			}
+		},
+		updateCurrentPage(selectedPage){
+			this.fetchCampaigns(selectedPage)
+			.then(res => {
+				this.campaignData = res;
+			})
 		}
     }
 }

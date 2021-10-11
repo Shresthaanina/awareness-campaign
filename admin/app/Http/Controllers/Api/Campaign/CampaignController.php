@@ -29,7 +29,7 @@ class CampaignController extends Controller
                                     ->select('id','slug','name','image','excerpt','start_date','created_by')
                                     ->where('is_published','1')
                                     ->orderBy('created_at','desc')
-                                    ->get();
+                                    ->paginate(2);
         return $campaigns;
     }
 
