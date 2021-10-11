@@ -25,30 +25,34 @@ export default {
     ...mapActions('auth', [
         'getAccountDetail',
     ]),
+
+  },  watch:{
+    $route (to, from){
+        console.log(to);
+        console.log(from);
+        	var sectionFirstPadding = function() {
+		setTimeout(() => {
+	
+		if($("header.primary").length) {
+			$("section").eq(0).addClass("first");
+			$("section.first").css({
+				paddingTop: $("header.primary").outerHeight() + 15
+			});
+		}
+		$(window).on("resize",function(){
+			if($("header.primary").length) {
+				$("section.first").css({
+					paddingTop: $("header.primary").outerHeight() + 15
+				})
+			}
+		});
+	}, 500);
+	}
+  sectionFirstPadding();
+    }
   }
 }
 </script>
 <style>
 @import "https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap";
-
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>

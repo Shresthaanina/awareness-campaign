@@ -32,11 +32,13 @@ $(function(){
 	}
 
 	var sectionFirstPadding = function() {
+		setTimeout(() => {
+	
 		if($("header.primary").length) {
 			$("section").eq(0).addClass("first");
 			$("section.first").css({
 				paddingTop: $("header.primary").outerHeight() + 15
-			})			
+			});
 		}
 		$(window).on("resize",function(){
 			if($("header.primary").length) {
@@ -45,6 +47,7 @@ $(function(){
 				})
 			}
 		});
+	}, 500);
 	}
 
 	var stickyHeader = function() {	
