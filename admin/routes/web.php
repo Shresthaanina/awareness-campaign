@@ -47,5 +47,6 @@ Route::group(['middleware' => ['auth','isAdmin']], function() {
     });
     Route::group(['prefix' => 'settings'], function(){
         Route::get('/', [SettingController::class, 'index'])->name('settings.index');
+        Route::put('/', [SettingController::class, 'update'])->name('settings.update');
     });
 });

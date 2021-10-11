@@ -50,7 +50,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link{{ (request()->is('settings*')) ? ' active' : '' }}{{ (request()->is('roles*')) ? ' active' : '' }}">
+                    <a href="{{ route('settings.index') }}" class="nav-link{{ (request()->is('settings*')) ? ' active' : '' }}{{ (request()->is('roles*')) ? ' active' : '' }}">
                     <i class="nav-icon fa fa-cog"></i>
                     <p>
                         Settings
