@@ -23,6 +23,7 @@
     "vue-axios": "^3.3.7",
     "vue-carousel": "^0.18.0",
     "vue-router": "^4.0.0-0",
+    "vue-skeletor": "^1.0.6",
     "vue-sweetalert2": "^5.0.2",
     "vue3-carousel": "^0.1.27",
     "vuex": "^4.0.2"

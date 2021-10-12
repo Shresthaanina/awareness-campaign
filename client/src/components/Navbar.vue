@@ -113,6 +113,9 @@ export default {
         ]),
         filterCampaignList(category_id = ''){
             this.setCampaignCategoryId(category_id)
+            if(!this.$route.matched.some(({ name }) => name === 'home')){
+                this.$router.push({ name: 'home' })
+            }
             this.fetchCampaigns()
         }
     },

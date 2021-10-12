@@ -23,6 +23,9 @@ import '@/assets/scripts/owlcarousel/dist/assets/owl.theme.default.min.css'
 import '@/assets/scripts/magnific-popup/dist/magnific-popup.css'
 // import '@/assets/scripts/sweetalert/dist/sweetalert.css'
 
+import { Skeletor } from 'vue-skeletor';
+import 'vue-skeletor/dist/vue-skeletor.css';
+
 import '@/assets/css/style.css'
 import '@/assets/css/skins/all.css'
 import '@/assets/css/demo.css'
@@ -56,6 +59,7 @@ const app = createApp(App)
 .use( CKEditor )
 .use( moment )
 .component('pagination', Pagination)
+.component(Skeletor.name, Skeletor)
 .mount('#app')
 
 

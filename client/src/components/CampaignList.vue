@@ -11,7 +11,22 @@
 			</div>
 			<div class="line"></div>
 			<div class="row">
-				<template v-if="!campaignLoading">
+				<article v-if="campaignLoading" class="col-md-12 article-list">
+					<div class="inner">
+						<figure style="background-color: rgba(0, 0, 0, 0.12);">
+							<Skeletor size="300" as="div"/>
+						</figure>
+						<div class="details">
+							<div class="detail">
+								<Skeletor width="200"/>
+							</div>
+							<h1><Skeletor /></h1>
+							<p><Skeletor v-for="i in 3" :key="i"/></p>
+							<footer class="float-right"><Skeletor width="70" height="35"/></footer>
+						</div>
+					</div>
+				</article>
+				<template v-else>
 				<article class="col-md-12 article-list" v-for="(campaign,k) in campaigns" :key="k">
 					<div class="inner">
 						<figure>

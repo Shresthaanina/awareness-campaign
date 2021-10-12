@@ -5,38 +5,55 @@
 			<div class="col-md-8 text-left">
 			<div class="row">
 				<div class="col-md-12">
-				<p class="page-subtitle">My Campaigns</p>
+				<p class="page-subtitle"><strong>My Campaigns</strong></p>
 				</div>
 			</div>
 			<div class="row">
-				<article class="col-md-12 article-list" v-for="(campaign,k) in campaigns" :key="k">
-				<div class="inner">
-					<figure>
-						<router-link :to="{ name: 'campaign', params:{ slug : campaign.slug}}">
-						<img :src="campaignPath + 'thumbnails/' +campaign.image" @error="setAltImage">
-					</router-link>
-					</figure>
-					<div class="details">
-					<div class="detail">
-						<!-- <div class="category">
-						<a href="category.html">Film</a>
-						</div> -->
-						<div class="time">{{ formatDate(campaign.start_date) }}</div>
+				<article v-if="campaignLoading" class="col-md-12 article-list">
+					<div class="inner">
+						<figure style="background-color: rgba(0, 0, 0, 0.12);">
+							<Skeletor size="300" as="div"/>
+						</figure>
+						<div class="details">
+							<div class="detail">
+								<Skeletor width="200"/>
+							</div>
+							<h1><Skeletor /></h1>
+							<p><Skeletor v-for="i in 3" :key="i"/></p>
+							<footer class="float-right"><Skeletor width="70" height="35"/></footer>
+						</div>
 					</div>
-					<h1><router-link :to="{ name: 'campaign', params:{ slug : campaign.slug}}">{{ campaign.name }}</router-link></h1>
-					<p>
-						{{ campaign.excerpt }}
-					</p>
-					<footer>
-						<!-- <a href="#" class="love"><i class="ion-android-favorite-outline"></i> <div>237</div></a> -->
-						<router-link class="btn btn-primary more" :to="{ name: 'edit-campaign', params: { slug:campaign.slug } }">
-						<div>Edit</div>
-						<div><i class="ion-ios-arrow-thin-right"></i></div>
-						</router-link>
-					</footer>
-					</div>
-				</div>
 				</article>
+				<template v-else>
+				<article class="col-md-12 article-list" v-for="(campaign,k) in campaigns" :key="k">
+					<div class="inner">
+						<figure>
+							<router-link :to="{ name: 'campaign', params:{ slug : campaign.slug}}">
+							<img :src="campaignPath + 'thumbnails/' +campaign.image" @error="setAltImage">
+						</router-link>
+						</figure>
+						<div class="details">
+						<div class="detail">
+							<!-- <div class="category">
+							<a href="category.html">Film</a>
+							</div> -->
+							<div class="time">{{ formatDate(campaign.start_date) }}</div>
+						</div>
+						<h1><router-link :to="{ name: 'campaign', params:{ slug : campaign.slug}}">{{ campaign.name }}</router-link></h1>
+						<p>
+							{{ campaign.excerpt }}
+						</p>
+						<footer>
+							<!-- <a href="#" class="love"><i class="ion-android-favorite-outline"></i> <div>237</div></a> -->
+							<router-link class="btn btn-primary more" :to="{ name: 'edit-campaign', params: { slug:campaign.slug } }">
+							<div>Edit</div>
+							<div><i class="ion-ios-arrow-thin-right"></i></div>
+							</router-link>
+						</footer>
+						</div>
+					</div>
+				</article>
+				</template>
 				<div class="col-md-12 text-center">
 					<pagination v-model="campaignData.current_page" 
 						:records="campaignData.total" 
@@ -44,18 +61,6 @@
 						@paginate="updateCurrentPage($event)"
 						:options="{ theme:'bootstrap4', chunksNavigation: 'scroll', edgeNavigation: true  }"
 					/>
-				<!-- <ul class="pagination">
-					<li class="prev"><a href="#"><i class="ion-ios-arrow-left"></i></a></li>
-					<li class="active"><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">...</a></li>
-					<li><a href="#">97</a></li>
-					<li class="next"><a href="#"><i class="ion-ios-arrow-right"></i></a></li>
-				</ul>
-				<div class="pagination-help-text">
-					Showing 8 results of 776 &mdash; Page 1
-				</div> -->
 				</div>
 			</div>
 			</div>
@@ -70,59 +75,7 @@
 				</figure>
 				</div>
 			</aside>
-			<aside>
-				<h1 class="aside-title">Recent Post</h1>
-				<div class="aside-body">
-				<article class="article-mini">
-					<div class="inner">
-					<figure>
-						<a href="single.html">
-						<img src="@/assets/images/news/img05.jpg">
-					</a>
-					</figure>
-					<div class="padding">
-					<h1><a href="single.html">Duis aute irure dolor in reprehenderit in voluptate velit</a></h1>
-					<div class="detail">
-						<div class="category"><a href="category.html">Lifestyle</a></div>
-						<div class="time">December 22, 2016</div>
-					</div>
-					</div>
-					</div>
-				</article>
-				<article class="article-mini">
-					<div class="inner">
-					<figure>
-						<a href="single.html">
-							<img src="@/assets/images/news/img02.jpg">
-						</a>
-					</figure>
-					<div class="padding">
-						<h1><a href="single.html">Fusce ullamcorper elit at felis cursus suscipit</a></h1>
-						<div class="detail">
-						<div class="category"><a href="category.html">Travel</a></div>
-						<div class="time">December 21, 2016</div>
-						</div>
-					</div>
-					</div>
-				</article>
-				<article class="article-mini">
-					<div class="inner">
-					<figure>
-						<a href="single.html">
-							<img src="@/assets/images/news/img13.jpg">
-						</a>
-					</figure>
-					<div class="padding">
-						<h1><a href="single.html">Duis aute irure dolor in reprehenderit in voluptate velit</a></h1>
-						<div class="detail">
-						<div class="category"><a href="category.html">International</a></div>
-						<div class="time">December 20, 2016</div>
-						</div>
-					</div>
-					</div>
-				</article>
-				</div>
-			</aside>
+			<recent-campaigns />
 			</div>
 		</div>
 		</div>
@@ -131,8 +84,10 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex"
-import * as moment from "moment/moment";
+import * as moment from "moment/moment"
+import RecentCampaigns from "@/components/RecentCampaigns"
 export default {
+	components: { RecentCampaigns },
     data() {
         return {
             campaignPath: process.env.VUE_APP_CAMPAIGN_PATH,

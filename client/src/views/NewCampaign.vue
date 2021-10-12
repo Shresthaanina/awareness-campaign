@@ -5,11 +5,11 @@
                 <div class="col-md-8 text-left">
                     <div class="row">
                         <div class="col-md-12">
-                        <h1 class="page-title">All Campaigns</h1>
-                        <p class="page-subtitle">Showing all campaigns</p>
+                        <!-- <h1 class="page-title">New Campaign</h1> -->
+                        <p class="page-subtitle"><strong>Create New Campaign</strong></p>
                         </div>
                     </div>
-                    <div class="line"></div>
+                    <!-- <div class="line"></div> -->
                     <div class="row">
                         <div class="col-md-12">
                             <form @submit.prevent="submitCampaign">
