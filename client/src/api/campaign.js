@@ -1,8 +1,8 @@
 import session from "./session";
 
 export default {
-  fetchCampaigns(page = 1) {
-    return session.get("api/v1/campaigns?page=" + page);
+  fetchCampaigns(page = 1, querystring = '') {
+    return session.get("api/v1/campaigns?page=" + page + '&' + querystring);
   },
   fetchRecentCampaigns() {
     return session.get("api/v1/recent_campaigns");

@@ -23,11 +23,19 @@ class CampaignController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $campaigns = $this->campaign::with('createdBy')
                                     ->select('id','slug','name','image','excerpt','start_date','created_by')
                                     ->where('is_published','1')
+                                    ->where(function ($q) use ($request){
+                                        if(isset($request['category_id']) && $request['category_id'] != ''):
+                                            $q->where('category_id', $request['category_id']);
+                                        endif;
+                                        if(isset($request['created_by']) && $request['created_by'] != ''):
+                                            $q->where('created_by', $request['created_by']);
+                                        endif;
+                                    })
                                     ->orderBy('created_at','desc')
                                     ->paginate(2);
         return $campaigns;
@@ -53,6 +61,7 @@ class CampaignController extends Controller
     {
         $request->validate([
             'name'         => 'required|max:200',
+            // 'category_id'  => 'required',
             'excerpt'      => 'max:250',
             'location'     => 'max:200',
             'image'        => 'sometimes|mimes:jpg,jpeg,png',
@@ -109,6 +118,7 @@ class CampaignController extends Controller
     {
         $request->validate([
             'name'         => 'required|max:200',
+            // 'category_id'  => 'required',
             'excerpt'      => 'max:250',
             'location'     => 'max:200',
             'image'        => 'sometimes|mimes:jpg,jpeg,png',
