@@ -30,7 +30,6 @@ import '@/assets/css/demo.css'
 // require('@/assets/css/styles.css');
 import '@/assets/css/styles.css'
 
-<style src="@/assets/css/styles.css"></style>
 global.jQuery = require('jquery');
 var $ = global.jQuery;
 window.$ = $;
