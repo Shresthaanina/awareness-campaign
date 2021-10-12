@@ -8,27 +8,96 @@
 ## Header scss
 =============================*/
 header .firstbar .brand {
-  margin: 0; }
-  header .firstbar .brand img {
-    max-width: 90px; }
-
+  margin: 0;
+}
+header .firstbar .brand img {
+  max-width: 90px;
+}
 header .firstbar .search {
   margin: 0;
   display: flex;
   align-items: center;
   width: 100%;
-  height: 100%; }
-  header .firstbar .search .form-group {
-    width: 100%; }
-
+  height: 100%;
+}
+header .firstbar .search .form-group {
+  width: 100%;
+}
 header .firstbar .nav-icons {
   margin-top: 0;
   height: 100%;
   display: flex;
-  align-items: center; }
+  align-items: center;
+}
 
 /* ============================
 ##End Header scss
 =============================*/
+/* =============================
+## Home scss
+================================ */
+.carousel-wrap {
+  padding: 0;
+  overflow-x: hidden;
+}
+.carousel-wrap .carousel__slide {
+  justify-content: initial;
+  text-align: initial;
+}
+.carousel-wrap .slide-content {
+  text-align: left;
+}
+.carousel-wrap .slide-title {
+  font-size: 32px;
+  color: #fff;
+}
+.carousel-wrap .slide-content {
+  font-size: 24px;
+  position: relative;
+}
+.carousel-wrap .img-wrap {
+  position: relative;
+}
+.carousel-wrap .img-wrap::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.3;
+}
+.carousel-wrap .text-wrap {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 1140px;
+  display: block;
+  color: #fff;
+}
+.carousel-wrap .carousel:hover .carousel__prev {
+  left: 30px;
+}
+.carousel-wrap .carousel:hover .carousel__next {
+  right: 30px;
+}
+.carousel-wrap .carousel__prev {
+  top: 50%;
+  left: -35px;
+  transform: translate(-50%, -50%);
+  transition: left ease-in-out 0.3s;
+}
+.carousel-wrap .carousel__next {
+  top: 50%;
+  right: -35px;
+  transform: translate(-50%, -50%);
+  transition: right ease-in-out 0.3s;
+}
+
+/* =============================
+##End Home scss
+================================ */
 
 /*# sourceMappingURL=styles.css.map */

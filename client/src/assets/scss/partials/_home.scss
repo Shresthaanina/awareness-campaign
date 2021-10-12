@@ -1,0 +1,81 @@
+/* =============================
+## Home scss
+================================ */
+.carousel-wrap {
+    padding: 0;
+    overflow-x: hidden;
+
+    .carousel__slide {
+        justify-content: initial;
+        text-align: initial;
+    }
+
+    .slide-content {
+        text-align: left;
+    }
+
+    .slide-title {
+        font-size: 32px;
+        color: #fff;
+
+    }
+
+    .slide-content {
+        font-size: 24px;
+        position: relative;
+    }
+
+    .img-wrap {
+        position: relative;
+
+        &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            opacity: .3;
+        }
+    }
+
+    .text-wrap {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 1140px;
+        display: block;
+        color: #fff;
+
+    }
+
+    .carousel {
+    	&:hover{
+    		    .carousel__prev {
+    		    	left: 30px;
+    		    }
+    		    .carousel__next {
+    		    	right: 30px;
+    		    }
+    	}
+        &__prev {
+            top: 50%;
+            left: -35px;
+            transform: translate(-50%, -50%);
+                 transition: left ease-in-out 0.3s;
+        }
+
+        &__next {
+            top: 50%;
+            right: -35px;
+            transform: translate(-50%, -50%);
+            transition: right ease-in-out 0.3s;
+        }
+    }
+}
+
+/* =============================
+##End Home scss
+================================ */
