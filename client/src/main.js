@@ -30,6 +30,8 @@ import '@/assets/css/style.css'
 import '@/assets/css/skins/all.css'
 import '@/assets/css/demo.css'
 
+// require('@/assets/css/styles.css');
+import '@/assets/css/styles.css'
 
 global.jQuery = require('jquery');
 var $ = global.jQuery;
@@ -59,3 +61,5 @@ const app = createApp(App)
 .component('pagination', Pagination)
 .component(Skeletor.name, Skeletor)
 .mount('#app')
+
+

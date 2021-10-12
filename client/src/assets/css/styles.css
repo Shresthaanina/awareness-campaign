@@ -1,0 +1,34 @@
+/* =========================
+## mixin scss 
+=========================*/
+/*===============================
+##End Mixin scss
+===============================*/
+/* ============================
+## Header scss
+=============================*/
+header .firstbar .brand {
+  margin: 0; }
+  header .firstbar .brand img {
+    max-width: 90px; }
+
+header .firstbar .search {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%; }
+  header .firstbar .search .form-group {
+    width: 100%; }
+
+header .firstbar .nav-icons {
+  margin-top: 0;
+  height: 100%;
+  display: flex;
+  align-items: center; }
+
+/* ============================
+##End Header scss
+=============================*/
+
+/*# sourceMappingURL=styles.css.map */

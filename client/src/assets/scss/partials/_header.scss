@@ -1,0 +1,38 @@
+/* ============================
+## Header scss
+=============================*/
+header{
+    .firstbar{
+        .brand{
+            margin: 0;
+            img{
+                max-width: 90px;
+            }
+        }
+        .search{
+            margin: 0;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            .form-group{
+                width: 100%;
+            }
+        }
+
+        .nav-icons{
+            margin-top: 0;height: 100%;
+    display: flex;
+    align-items: center;
+        }
+       
+    }
+}
+
+
+
+
+
+/* ============================
+##End Header scss
+=============================*/

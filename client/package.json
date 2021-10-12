@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "sass": "node-sass -w src/assets/scss/main.scss src/assets/css/styles.css   --source-map true"
   },
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^30.0.0",
@@ -20,6 +21,7 @@
     "v-pagination-3": "^0.1.6",
     "vue": "^3.0.0",
     "vue-axios": "^3.3.7",
+    "vue-carousel": "^0.18.0",
     "vue-router": "^4.0.0-0",
     "vue-skeletor": "^1.0.6",
     "vue-sweetalert2": "^5.0.2",
@@ -34,7 +36,8 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^7.0.0",
-    "expose-loader": "^3.0.0"
+    "expose-loader": "^3.0.0",
+    "node-sass": "^6.0.1"
   },
   "eslintConfig": {
     "root": true,
