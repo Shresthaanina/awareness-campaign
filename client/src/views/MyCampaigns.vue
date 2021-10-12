@@ -145,10 +145,12 @@ export default {
     },
     
     computed: {
+        ...mapGetters("auth", ["accountDetail"]),
         ...mapGetters("campaign", ["campaignLoading","campaigns"])
     },
 
     created(){
+		this.setCampaignCreatedById(this.accountDetail.id)
         this.fetchCampaigns()
 		.then(res => {
 			this.campaignData = res;
@@ -158,6 +160,7 @@ export default {
     methods: {
         ...mapActions('campaign', [
             'fetchCampaigns',
+			'setCampaignCreatedById'
         ]),
 
         setAltImage(e){

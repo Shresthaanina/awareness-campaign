@@ -11,6 +11,10 @@ const initialState = {
   campaignLoading: false,
   categoryLoading: false,
   categoryList: [],
+  campaignFilters: {
+    category_id:'',
+    created_by:''
+  }
 };
 
 const getters = {
@@ -20,13 +24,26 @@ const getters = {
   campaignLoading: state => state.campaignLoading,
   categoryLoading: state => state.categoryLoading,
   categoryList: state => state.categoryList,
+  campaignFilters: state => state.campaignFilters,
 };
 
 const actions = {
-  fetchCampaigns({ commit }, page) {
+  fetchCampaigns({ commit, getters }, page) {
     commit('campaignLoading', true);
     return new Promise((resolve, reject) => {
-        campaign.fetchCampaigns(page)
+
+        // get campaignFilters object and convert to querystring for filter
+        const campaignFilters = getters.campaignFilters
+        let str = [];
+        for (var p in campaignFilters){
+          if (campaignFilters.hasOwnProperty(p)) {
+            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(campaignFilters[p]))
+          }
+        }
+        let filters = str.join("&")
+        //end
+
+        campaign.fetchCampaigns(page, filters)
         .then(res => { 
           commit('setCampaigns', res.data.data);
           commit('campaignLoading', false);
@@ -129,6 +146,14 @@ const actions = {
         });
     });
   },
+
+  setCampaignCategoryId({ commit }, category_id) {
+    commit('setCampaignCategoryId', category_id);
+  },
+
+  setCampaignCreatedById({ commit }, user_id) {
+    commit('setCampaignCreatedById', user_id);
+  },
 };
 
 const mutations = {
@@ -152,6 +177,12 @@ const mutations = {
   },
   categoryLoading(state, value){
     state.categoryLoading = value;
+  },
+  setCampaignCategoryId(state, value){
+    state.campaignFilters.category_id = value;
+  },
+  setCampaignCreatedById(state, value){
+    state.campaignFilters.created_by = value;
   }
 };
 

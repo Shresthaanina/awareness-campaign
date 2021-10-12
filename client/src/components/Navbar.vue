@@ -108,10 +108,12 @@ export default {
     methods: {
         ...mapActions('campaign', [
             'getCategoryList',
-            'fetchCampaigns'
+            'fetchCampaigns',
+            'setCampaignCategoryId',
         ]),
-        filterCampaignList(category_id){
-            this.fetchCampaigns(category_id)
+        filterCampaignList(category_id = ''){
+            this.setCampaignCategoryId(category_id)
+            this.fetchCampaigns()
         }
     },
     mounted() {

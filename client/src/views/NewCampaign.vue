@@ -20,6 +20,16 @@
                                         <span class="invalid-feedback" v-if="db_errors && db_errors.name">{{ db_errors.name[0] }}</span>
                                     </div>
                                 </div>
+                                <div class="row mb-3">
+                                    <label for="" class="col-sm-2 col-form-label">Category</label>
+                                    <div class="col-md-10">
+                                        <select class="form-control" v-model="campaign.category_id">
+                                            <option value="">Select Category</option>
+                                            <option v-for="(cat,c) in categoryList" :value="cat.id" :key="c">{{ cat.name }}</option>
+                                        </select>
+                                        <span class="invalid-feedback" v-if="db_errors && db_errors.category_id">{{ db_errors.category_id[0] }}</span>
+                                    </div>
+                                </div>
                                 <div class="row mb-2">
                                     <label for="" class="col-sm-2 col-form-label">Location</label>
                                     <div class="col-md-10">
@@ -88,6 +98,7 @@ export default {
             campaign: {
                 id:'',
                 name:'',
+                category_id:'',
                 location:'',
                 excerpt:'',
                 description:'',
@@ -103,7 +114,7 @@ export default {
     },
 
     computed: {
-        ...mapGetters("campaign", ["campaignLoading"])
+        ...mapGetters("campaign", ["campaignLoading",'categoryList'])
     },
 
     created(){
@@ -113,6 +124,7 @@ export default {
             .then(res => {
                 this.campaign.id = res.id
                 this.campaign.name = res.name
+                this.campaign.category_id = res.category_id
                 this.campaign.location = res.location
                 this.campaign.excerpt = res.excerpt
                 this.campaign.description = res.description
@@ -144,6 +156,7 @@ export default {
             this.db_errors = null
             let formData = new FormData()
             formData.append('name', this.campaign.name);
+            formData.append('category_id', this.campaign.category_id);
             formData.append('location', this.campaign.location);
             formData.append('start_date', this.campaign.start_date);
             formData.append('end_date', this.campaign.end_date);
