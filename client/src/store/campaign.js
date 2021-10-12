@@ -2,6 +2,11 @@ import campaign from "@/api/campaign";
 
 const initialState = {
   campaigns: [],
+  campaignPaginateData: {
+    total: 0,
+    per_page:0,
+    current_page:1
+  },
   recentCampaigns: [],
   campaign: {
     id: null,
@@ -21,6 +26,7 @@ const getters = {
   campaigns: state => state.campaigns,
   recentCampaigns: state => state.recentCampaigns,
   campaign: state => state.campaign,
+  campaignPaginateData: state => state.campaignPaginateData,
   campaignLoading: state => state.campaignLoading,
   categoryLoading: state => state.categoryLoading,
   categoryList: state => state.categoryList,
@@ -46,6 +52,7 @@ const actions = {
         campaign.fetchCampaigns(page, filters)
         .then(res => { 
           commit('setCampaigns', res.data.data);
+          commit('setCampaignPaginateData', res.data);
           commit('campaignLoading', false);
           resolve(res.data);
         })
@@ -149,6 +156,7 @@ const actions = {
 
   setCampaignCategoryId({ commit }, category_id) {
     commit('setCampaignCategoryId', category_id);
+    commit('setCampaignCreatedById', '');
   },
 
   setCampaignCreatedById({ commit }, user_id) {
@@ -159,6 +167,9 @@ const actions = {
 const mutations = {
   setCampaigns(state, value) {
     state.campaigns = value;
+  },
+  setCampaignPaginateData(state, value) {
+    state.campaignPaginateData = value;
   },
   setRecentCampaigns(state, value) {
     state.recentCampaigns = value;

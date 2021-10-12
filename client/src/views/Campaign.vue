@@ -23,7 +23,7 @@
                             <h1>{{ campaign.name }}</h1>
                             <ul class="details">
                                 <li>Posted on {{ formatDate(campaign.start_date) }}</li>
-                                <!-- <li><a>Film</a></li> -->
+                                <li v-if="campaign.category"><a>{{ campaign.category.name }}</a></li>
                                 <li>By <a href="#">{{ campaign.created_by.name }}</a></li>
                             </ul>
                         </header>

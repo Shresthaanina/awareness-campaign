@@ -34,10 +34,10 @@
 						</figure>
 						<div class="details">
 						<div class="detail">
-							<!-- <div class="category">
-							<a href="category.html">Film</a>
-							</div> -->
-							<div class="time">{{ formatDate(campaign.start_date) }}</div>
+							<div class="category" v-if="campaign.category">
+								<a href="javascript:void(0)">{{ campaign.category.name }}</a>
+							</div>
+							<div class="time" v-if="campaign.start_date">{{ formatDate(campaign.start_date) }}</div>
 						</div>
 						<h1><router-link :to="{ name: 'campaign', params:{ slug : campaign.slug}}">{{ campaign.name }}</router-link></h1>
 						<p>
@@ -55,9 +55,9 @@
 				</article>
 				</template>
 				<div class="col-md-12 text-center">
-					<pagination v-model="campaignData.current_page" 
-						:records="campaignData.total" 
-						:per-page="campaignData.per_page" 
+					<pagination v-model="current_page" 
+						:records="campaignPaginateData.total" 
+						:per-page="campaignPaginateData.per_page" 
 						@paginate="updateCurrentPage($event)"
 						:options="{ theme:'bootstrap4', chunksNavigation: 'scroll', edgeNavigation: true  }"
 					/>
@@ -91,18 +91,20 @@ export default {
     data() {
         return {
             campaignPath: process.env.VUE_APP_CAMPAIGN_PATH,
-			campaignData: {
-				total: 0,
-				per_page:0,
-				current_page:1
-			},
+			current_page:1,
         }
     },
     
     computed: {
         ...mapGetters("auth", ["accountDetail"]),
-        ...mapGetters("campaign", ["campaignLoading","campaigns"])
+        ...mapGetters("campaign", ["campaignLoading","campaigns","campaignPaginateData"])
     },
+
+	watch:{
+		campaignPaginateData(val){
+			this.current_page = val.current_page
+		}
+	},
 
     created(){
 		this.setCampaignCreatedById(this.accountDetail.id)

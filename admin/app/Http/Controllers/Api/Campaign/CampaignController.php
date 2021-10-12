@@ -25,8 +25,8 @@ class CampaignController extends Controller
      */
     public function index(Request $request)
     {
-        $campaigns = $this->campaign::with('createdBy')
-                                    ->select('id','slug','name','image','excerpt','start_date','created_by')
+        $campaigns = $this->campaign::with(['createdBy','category'])
+                                    ->select('id','slug','name','image','excerpt','start_date','created_by','category_id')
                                     ->where('is_published','1')
                                     ->where(function ($q) use ($request){
                                         if(isset($request['category_id']) && $request['category_id'] != ''):
@@ -90,7 +90,7 @@ class CampaignController extends Controller
      */
     public function show($slug)
     {
-        $campaign = $this->campaign::with('createdBy')->where('slug', $slug)
+        $campaign = $this->campaign::with(['createdBy','category'])->where('slug', $slug)
                                     ->where('is_published','1')
                                     ->firstOrFail();
         return $campaign;

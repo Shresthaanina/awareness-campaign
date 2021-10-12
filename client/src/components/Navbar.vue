@@ -75,8 +75,8 @@
                 </div>
                 <div id="menu-list">
                     <ul class="nav-list">
-                        <li><a href="javascript::void(0)" @click="filterCampaignList()">All</a></li>
-                        <li v-for="(category,c) in categoryList" :key="c"><a href="javascript::void(0)" @click="filterCampaignList(category.id)">{{ category.name }}</a></li>
+                        <li><a href="javascript:void(0)" @click="filterCampaignList()">All</a></li>
+                        <li v-for="(category,c) in categoryList" :key="c"><a href="javascript:void(0);" @click="filterCampaignList(category.id)">{{ category.name }}</a></li>
                         <li class="dropdown magz-dropdown"><a href="#">My Account <i class="ion-ios-arrow-right"></i></a>
                             <ul class="dropdown-menu">
                                 <li><router-link :to="{ name: 'profile' }"><i class="icon ion-person"></i> Profile</router-link></li>
