@@ -5,7 +5,7 @@
 			<div class="col-md-8 text-left">
 			<div class="row">
 				<div class="col-md-12">
-				<p class="page-subtitle">My Campaigns</p>
+				<p class="page-subtitle"><strong>My Campaigns</strong></p>
 				</div>
 			</div>
 			<div class="row">
