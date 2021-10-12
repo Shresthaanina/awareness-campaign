@@ -27,7 +27,10 @@ import '@/assets/css/style.css'
 import '@/assets/css/skins/all.css'
 import '@/assets/css/demo.css'
 
+// require('@/assets/css/styles.css');
+import '@/assets/css/styles.css'
 
+<style src="@/assets/css/styles.css"></style>
 global.jQuery = require('jquery');
 var $ = global.jQuery;
 window.$ = $;
@@ -55,3 +58,5 @@ const app = createApp(App)
 .use( moment )
 .component('pagination', Pagination)
 .mount('#app')
+
+

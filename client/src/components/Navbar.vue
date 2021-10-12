@@ -27,7 +27,7 @@
                     <div class="col-md-3 col-sm-12">
                         <div class="brand">
                             <router-link :to="{ name: 'home' }">
-                                <img src="@/assets/images/logo.png" alt="Magz Logo">
+                                <img width="150" src="@/assets/images/logoo-awar.jpg" alt="Awarness Logo">
                             </router-link>
                         </div>
                     </div>
@@ -113,6 +113,14 @@ export default {
         filterCampaignList(category_id){
             this.fetchCampaigns(category_id)
         }
-    }
+    },
+    mounted() {
+    let style = document.createElement('link');
+    style.type = "text/css";
+    style.rel = "stylesheet";
+    style.href = 'http://localhost/awareness-campaign/client/src/assets/css/styles.css';
+    document.head.appendChild(style);
+}
+
 }
 </script>
