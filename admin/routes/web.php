@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Banner\BannerController;
 use App\Http\Controllers\Admin\Campaign\CampaignController;
 use App\Http\Controllers\Admin\Campaign\CategoryController;
 use App\Http\Controllers\Admin\Setting\SettingController;
@@ -39,6 +40,14 @@ Route::group(['middleware' => ['auth','isAdmin']], function() {
         Route::patch('/{id}', [CategoryController::class, 'update'])->name('categories.update');
         Route::delete('/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
         Route::patch('/status/{id}',[CategoryController::class, 'updateStatus'])->name('categories.updateStatus');
+    });
+    Route::group(['prefix' => 'banners'], function(){
+        Route::get('/', [BannerController::class, 'index'])->name('banners.index');
+        Route::get('/{id}', [BannerController::class, 'show'])->name('banners.show');
+        Route::post('/', [BannerController::class, 'store'])->name('banners.store');
+        Route::patch('/{id}', [BannerController::class, 'update'])->name('banners.update');
+        Route::delete('/{id}', [BannerController::class, 'destroy'])->name('banners.destroy');
+        Route::patch('/status/{id}',[BannerController::class, 'updateStatus'])->name('banners.updateStatus');
     });
     Route::group(['prefix' => 'users'], function(){
         Route::get('/', [UserController::class, 'index'])->name('users.index');

@@ -23,6 +23,15 @@
                 </li>
 
                 <li class="nav-item">
+                    <a href="{{ route('banners.index') }}" class="nav-link{{ (request()->is('banners*')) ? ' active' : '' }}"">
+                        <i class="nav-icon fa fa-image"></i>
+                        <p>
+                            Banners
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
                     <a href="{{ route('campaigns.index') }}" class="nav-link{{ (request()->is('campaigns*')) ? ' active' : '' }}"">
                         <i class="nav-icon fa fa-boxes"></i>
                         <p>
@@ -42,7 +51,7 @@
 
                 <li class="nav-item">
                     <a href="{{ route('users.index') }}" class="nav-link{{ (request()->is('users*')) ? ' active' : '' }}"">
-                        <i class="nav-icon fa fa-dollar-sign"></i>
+                        <i class="nav-icon fa fa-users"></i>
                         <p>
                             Users
                         </p>
