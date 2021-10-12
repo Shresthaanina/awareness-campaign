@@ -15,5 +15,8 @@ export default {
   },
   updateProfile(formData) {
     return session.post("api/v1/profile", formData);
+  },
+  updatePassword(formData) {
+    return session.patch("api/v1/profile/change_password", formData);
   }
 };

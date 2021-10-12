@@ -82,7 +82,7 @@
                                 <li><router-link :to="{ name: 'profile' }"><i class="icon ion-person"></i> Profile</router-link></li>
                                 <li><router-link :to="{ name: 'my-campaigns' }"><i class="icon ion-heart"></i> My Campaigns</router-link></li>
                                 <li><router-link :to="{ name: 'new-campaign' }"><i class="icon ion-chatbox"></i> New Campaign</router-link></li>
-                                <li><a href="#"><i class="icon ion-key"></i> Change Password</a></li>
+                                <li><router-link :to="{ name: 'change-password' }"><i class="icon ion-key"></i> Change Password</router-link></li>
                                 <li class="divider"></li>
                                 <li><router-link :to="{ name: 'logout' }"><i class="icon ion-log-out"></i> Logout</router-link></li>
                             </ul>

@@ -64,6 +64,12 @@ const routes = [
     beforeEnter: requireAuthenticated
   },
   {
+    path: '/change_password',
+    name: 'change-password',
+    component: () => import('../views/Auth/ChangePassword.vue'),
+    beforeEnter: requireAuthenticated
+  },
+  {
     path: '/profile/new_campaign',
     name: 'new-campaign',
     component: () => import('../views/NewCampaign.vue'),

@@ -109,7 +109,7 @@ export default {
                 this.isSubmitting = false
                 this.$swal({
                     toast: true,
-                    position: 'top-end',
+                    position: 'bottom-end',
                     showConfirmButton: false,
                     title: res.message,
                     icon: "success", //built in icons: success, warning, error, info

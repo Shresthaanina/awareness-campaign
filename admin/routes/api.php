@@ -40,6 +40,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::group(['prefix' => 'v1'], function(){
         Route::get('profile', [PassportAuthController::class, 'profile'])->name('profile');
         Route::patch('profile', [PassportAuthController::class, 'updateProfile'])->name('profile.update');
+        Route::patch('profile/change_password', [PassportAuthController::class, 'updatePassword'])->name('profile.update_password');
 
         Route::group(['prefix' => 'campaigns'], function(){
             Route::post('/', [CampaignController::class, 'store'])->name('campaigns.store');

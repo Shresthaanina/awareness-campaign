@@ -104,6 +104,18 @@ const actions = {
         commit('isLoading', false);
           return Promise.reject(error.response.data);
       });
+  },
+  updatePassword({ commit }, formData) {
+    commit('isLoading', true);
+    return auth.updatePassword(formData)
+      .then(res => {
+        commit('isLoading', false);
+        return Promise.resolve(res.data);
+      })
+      .catch(error => {
+        commit('isLoading', false);
+          return Promise.reject(error.response.data);
+      });
   }
 };
 
