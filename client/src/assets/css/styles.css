@@ -4,6 +4,39 @@
 /*===============================
 ##End Mixin scss
 ===============================*/
+/* ==========================
+## Common scss
+=========================== */
+.card-title {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.card-primary.card-outline {
+  border-top: 3px solid var(--red);
+}
+
+.card-header {
+  border-bottom: none;
+}
+
+.box.box-border {
+  border-top: 3px solid var(--red);
+}
+
+.box {
+  border-radius: 0.25rem;
+}
+.box .box-body {
+  padding: 0.75rem 1.25rem;
+}
+.box .box-body h4 {
+  font-size: 1.1;
+}
+
+/* ==========================
+##End Common scss
+=========================== */
 /* ============================
 ## Header scss
 =============================*/
