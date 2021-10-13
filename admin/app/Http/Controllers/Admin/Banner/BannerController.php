@@ -127,7 +127,7 @@ class BannerController extends Controller
             $data['is_active'] = 1;
 
             $current_image = $banner->image;
-            if(isset($data['image']) && $data['image'] != '' && ($this->data['image'] != $current_image)){
+            if(isset($data['image']) && $data['image'] != '' && ($data['image'] != $current_image)){
                 $fileName = $this->baseController->saveGeneralFile(public_path($this->bannerImagePath),'banner',$data['image']);
                 $this->baseController->deleteImageFile(public_path($this->bannerImagePath), $current_image);
             }else {
@@ -137,7 +137,7 @@ class BannerController extends Controller
 
             $banner = $this->banner->updateBanner($data, $banner->id);
         }, 3);
-        return response(['message' => 'Banner updated succcessfully.'], 201);
+        return response(['message' => 'Banner updated succcessfully.'], 200);
     }
 
     /**

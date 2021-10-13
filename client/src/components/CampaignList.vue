@@ -27,34 +27,39 @@
 					</div>
 				</article>
 				<template v-else>
-				<article class="col-md-12 article-list" v-for="(campaign,k) in campaigns" :key="k">
-					<div class="inner">
-						<figure>
-							<router-link :to="{ name: 'campaign', params:{ slug : campaign.slug}}">
-							<img :src="campaignPath + 'thumbnails/' +campaign.image" @error="setAltImage">
-						</router-link>
-						</figure>
-						<div class="details">
-						<div class="detail">
-							<div class="category" v-if="campaign.category">
-								<a href="javascript:void(0);">{{ campaign.category.name }}</a>
+					<template v-if="campaigns.length == 0">
+						<div class="col-md-12">No campaigns available right now.</div>
+					</template>
+					<template v-else>
+						<article class="col-md-12 article-list" v-for="(campaign,k) in campaigns" :key="k">
+							<div class="inner">
+								<figure>
+									<router-link :to="{ name: 'campaign', params:{ slug : campaign.slug}}">
+									<img :src="campaignPath + 'thumbnails/' +campaign.image" @error="setAltImage">
+								</router-link>
+								</figure>
+								<div class="details">
+								<div class="detail">
+									<div class="category" v-if="campaign.category">
+										<a href="javascript:void(0);">{{ campaign.category.name }}</a>
+									</div>
+									<div class="time" v-if="campaign.start_date">{{ formatDate(campaign.start_date) }}</div>
+								</div>
+								<h1><router-link :to="{ name: 'campaign', params:{ slug : campaign.slug}}">{{ campaign.name }}</router-link></h1>
+								<p>
+									{{ campaign.excerpt }}
+								</p>
+								<footer>
+									<!-- <a href="#" class="love"><i class="ion-android-favorite-outline"></i> <div>237</div></a> -->
+									<router-link class="btn btn-primary more" :to="{ name: 'campaign', params:{ slug : campaign.slug}}">
+										<div>More</div>
+										<div><i class="ion-ios-arrow-thin-right"></i></div>
+									</router-link>
+								</footer>
+								</div>
 							</div>
-							<div class="time" v-if="campaign.start_date">{{ formatDate(campaign.start_date) }}</div>
-						</div>
-						<h1><router-link :to="{ name: 'campaign', params:{ slug : campaign.slug}}">{{ campaign.name }}</router-link></h1>
-						<p>
-							{{ campaign.excerpt }}
-						</p>
-						<footer>
-							<!-- <a href="#" class="love"><i class="ion-android-favorite-outline"></i> <div>237</div></a> -->
-							<router-link class="btn btn-primary more" :to="{ name: 'campaign', params:{ slug : campaign.slug}}">
-								<div>More</div>
-								<div><i class="ion-ios-arrow-thin-right"></i></div>
-							</router-link>
-						</footer>
-						</div>
-					</div>
-				</article>
+						</article>
+					</template>
 				</template>
 				<div class="col-md-12 text-center">
 					<pagination v-if="campaignPaginateData.last_page > 1" v-model="current_page" 
@@ -71,7 +76,7 @@
 				<div class="aside-body">
 				<figure class="ads">
 					<a href="single.html">
-						<img src="@/assets/images/ad.png">
+						<img src="@/assets/images/promo.png">
 					</a>
 					<figcaption>Advertisement</figcaption>
 				</figure>

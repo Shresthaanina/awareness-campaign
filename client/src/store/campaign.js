@@ -161,6 +161,7 @@ const actions = {
 
   setCampaignCreatedById({ commit }, user_id) {
     commit('setCampaignCreatedById', user_id);
+    commit('setCampaignCategoryId', '');
   },
 };
 

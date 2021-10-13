@@ -221,7 +221,6 @@
         $('#bannerForm .card-body .alert-danger').remove();
         var id = $('#banner_id').val();
         let formData = new FormData();
-        // formData.append('_token', "{{ csrf_token() }}");
         formData.append('title', $(this).find('input[name="title"]').val());
         formData.append('excerpt', $(this).find('input[name="excerpt"]').val());
         formData.append('button_text', $(this).find('input[name="button_text"]').val());
@@ -234,18 +233,18 @@
             var imgName = $(this).find('#banner-preview img').attr('src').split('/').pop();
             formData.append('prev_image', imgName);
         }
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
+        if(id){
+            formData.append('_method', 'PATCH')
+        }
         $.ajax({
             url: !id ? "{{ route('banners.store') }}" : "{{ url('/banners') }}/"+id,
-            type: !id ? "POST" : "PATCH",
-            contentType: 'multipart/form-data',
+            type: "POST",
             processData: false,
             contentType: false,
             data: formData,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            },
             success:function(data){
                 if(data.errors)
                 {

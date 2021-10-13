@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Auth\PassportAuthController;
+use App\Http\Controllers\Api\Banner\BannerController;
 use App\Http\Controllers\Api\Campaign\CampaignController;
 use App\Http\Controllers\Api\Category\CategoryController;
 
@@ -32,6 +33,7 @@ Route::group(['prefix' => 'v1'], function(){
     Route::get('/campaigns/{slug}', [CampaignController::class, 'show'])->name('campaigns.show');
     Route::get('/recent_campaigns', [CampaignController::class, 'recent'])->name('campaigns.recent');
     Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+    Route::get('/banners', [BannerController::class, 'index'])->name('banners.index');
 });
 
 Route::group(['middleware' => ['auth:api']], function () {

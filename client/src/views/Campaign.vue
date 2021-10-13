@@ -6,7 +6,7 @@
                     <aside>
                         <div class="aside-body">
                             <figure class="ads">
-                                <img src="@/assets/images/ad.png">
+                                <img src="@/assets/images/promo.png">
                                 <figcaption>Advertisement</figcaption>
                             </figure>
                         </div>
