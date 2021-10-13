@@ -58,7 +58,10 @@
                                             <img :src="campaign.imageUrl" >
                                             <div><span class="btn btn-sm" @click="removeFile">Remove</span></div>
                                         </div>
-                                        <input v-else type="file" class="form-control" @change="fileSelected">
+                                        <template v-else>
+                                        <small class="text-muted">(Recommended: 671*480px)</small>
+                                        <input type="file" class="form-control" @change="fileSelected">
+                                        </template>
                                     </div>
                                 </div>
                                 <div class="row mb-2">

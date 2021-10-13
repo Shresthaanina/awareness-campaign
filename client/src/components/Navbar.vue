@@ -1,25 +1,4 @@
 <template>
-    <!-- <div>
-    <ul>
-        <template v-if="isAuthenticated">
-            <li>
-                <router-link :to="{ name: 'profile' }">Account</router-link>
-            </li>
-            <li>
-                <router-link :to="{ name: 'logout' }">Logout</router-link>
-            </li>
-        </template>
-        <template v-else>
-        <li>
-            <router-link :to="{ name: 'login' }">Login</router-link>
-        </li>
-        <li>
-            <router-link :to="{ name: 'register' }">Register</router-link>
-        </li>
-        </template>
-        
-    </ul>
-    </div> -->
     <header class="primary">
         <div class="firstbar">
             <div class="container">
@@ -63,9 +42,9 @@
         <nav class="menu">
             <div class="container">
                 <div class="brand">
-                    <a href="#">
+                    <router-link :to="{ name: 'home' }">
                         <img src="@/assets/images/logo.png" alt="Magz Logo">
-                    </a>
+                    </router-link>
                 </div>
                 <div class="mobile-toggle">
                     <a href="#" data-toggle="menu" data-target="#menu-list"><i class="ion-navicon-round"></i></a>

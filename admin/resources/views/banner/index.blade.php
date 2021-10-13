@@ -21,7 +21,7 @@
                 <div class="card-body">
                     <!-- Labels on top Form Content -->
                     <div class="form-group">
-                        <label for="banner-image">Banner Image *</label>
+                        <label for="banner-image">Banner Image *</label> <small class="text-muted">(Recommended: 1920*640px)</small>
                         <input type="file" name="image" value="" class="form-control" id="banner-image">
                         <div id="banner-preview" style="display: none;">
                             <img src="" height="120px">

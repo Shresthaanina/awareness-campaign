@@ -24,7 +24,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="logo">Logo</label><br>
+                                        <label for="logo">Logo *</label> <small class="text-muted">(Recommended: 763*242px)</small><br>
                                         <input type="file" name="logo" class="form-control" id="logo" value="" @if(isset($settings['logo'])) style="display: none;" @endif>
                                         <div id="logo-preview" @if(!isset($settings['logo'])) style="display: none;" @endif>
                                             <img src="{{ asset(config('constants.settingPath')) . '/' .$settings['logo'] }}" height="150px">
