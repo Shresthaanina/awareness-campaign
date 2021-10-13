@@ -22,7 +22,7 @@
 
     .slide-content {
         font-size: 24px;
-        position: relative;
+        position: relative;width: 100%;
     }
 
     .img-wrap {
@@ -42,29 +42,46 @@
 
     .text-wrap {
         position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        width: 1140px;
+        left: 0%;
+        top: 0%;
+        width: 100%;
         display: block;
         color: #fff;
+        height: 100%;
+        display: flex;
+        align-items: center;
 
     }
 
+    .text-content-wrap {
+        max-width: 1140px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+
     .carousel {
-    	&:hover{
-    		    .carousel__prev {
-    		    	left: 30px;
-    		    }
-    		    .carousel__next {
-    		    	right: 30px;
-    		    }
-    	}
+        padding: 0;
+
+        &:hover {
+            .carousel__prev {
+                left: 30px;
+            }
+
+            .carousel__next {
+                right: 30px;
+            }
+        }
+
         &__prev {
             top: 50%;
             left: -35px;
             transform: translate(-50%, -50%);
-                 transition: left ease-in-out 0.3s;
+            transition: left ease-in-out 0.3s;
+
+            svg {
+                height: 42px;
+                width: 42px;
+            }
         }
 
         &__next {
@@ -72,6 +89,27 @@
             right: -35px;
             transform: translate(-50%, -50%);
             transition: right ease-in-out 0.3s;
+
+            svg {
+                height: 42px;
+                width: 42px;
+            }
+        }
+    }
+
+    .carousel__pagination {
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-50%);
+
+        &-item {}
+
+        &-button {
+            background-color: var(--red);
+            &--active{
+                background-color:var(--light);
+            }
         }
     }
 }
