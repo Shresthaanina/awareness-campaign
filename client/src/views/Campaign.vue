@@ -77,7 +77,7 @@
                     </div>
                     <div class="author">
                         <figure>
-                            <img src="@/assets/images/img01.jpg">
+                            <img :src="userPath + campaign.created_by.image" @error="setUserPlaceholderImage">
                         </figure>
                         <div class="details">
                             <!-- <div class="job">Web Developer</div> -->
@@ -92,6 +92,7 @@
 </template>
 
 <script>
+import userPlaceholderImage from '@/assets/images/user-placeholder.png'
 import { mapGetters, mapActions } from "vuex"
 import * as moment from "moment/moment";
 import RecentCampaigns from "@/components/RecentCampaigns"
@@ -100,7 +101,8 @@ export default {
     components: { RecentCampaigns },
     data() {
         return {
-            campaignPath: process.env.VUE_APP_CAMPAIGN_PATH
+            campaignPath: process.env.VUE_APP_CAMPAIGN_PATH,
+            userPath: process.env.VUE_APP_USER_PATH
         }
     },
     computed: {
@@ -116,6 +118,9 @@ export default {
 
         setAltImage(e){
             e.target.src = "https://i.picsum.photos/id/691/300/215.jpg?hmac=y8rHB4E2US1Q8hpawpEAGFrgDqj6j0DqZp9mUhdZDZM"
+        },
+        setUserPlaceholderImage(e){
+            e.target.src = userPlaceholderImage
         },
         formatDate(val){
 			if(val){

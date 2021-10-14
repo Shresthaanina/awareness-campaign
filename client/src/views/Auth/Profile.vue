@@ -21,7 +21,7 @@
                                         <label for="" class="col-sm-4 col-form-label">Image</label>
                                         <div class="col-md-8">
                                             <div class="img-preview" v-if="user.imageUrl">
-                                                <img :src="user.imageUrl">
+                                                <img :src="user.imageUrl" @error="setAltImage">
                                                 <div><span class="btn btn-sm" @click="removeFile">Remove</span></div>
                                             </div>
                                             <input v-else type="file" class="form-control" @change="fileSelected">
@@ -62,6 +62,7 @@
     </section>
 </template>
 <script>
+import userPlaceholderImage from '@/assets/images/user-placeholder.png'
 import UserMenu from "@/components/UserMenu"
 import { mapActions } from "vuex"
 export default {
@@ -99,6 +100,9 @@ export default {
         removeFile() {
             this.user.imageUrl = null
             this.user.image = ''
+        },
+        setAltImage(e){
+            e.target.src = userPlaceholderImage
         },
         updateProfileData() {
             this.db_errors = null
