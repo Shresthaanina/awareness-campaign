@@ -79,7 +79,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="offset-sm-2 col-md-2">
-                                        <button type="submit" class="btn btn-primary" :disabled="campaignLoading">{{ campaign.id != '' ? 'Update' : 'Create' }}</button>
+                                        <button type="submit" class="btn btn-primary" :disabled="campaignLoading">{{ campaign.id != '' ? 'Update' : 'Create' }} <img v-if="campaignLoading" src="@/assets/images/spinner.svg" style="height:23px; position:absolute;"></button>
                                     </div>
                                 </div>
                             </form>

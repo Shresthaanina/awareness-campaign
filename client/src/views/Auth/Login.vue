@@ -23,7 +23,7 @@
                                 </span>
                             </div>
                             <div class="form-group text-right">
-                                <button type="submit" class="btn btn-primary btn-block">Login</button>
+                                <button type="submit" class="btn btn-primary btn-block" :disabled="isSubmitting">Login <img v-if="isSubmitting" src="@/assets/images/spinner.svg" style="height:23px; position:absolute;"></button>
                             </div>
                             <div class="form-group text-center">
                                 <span class="text-muted">Don't have an account?</span> <router-link :to="{ name: 'register' }">Create one</router-link>
@@ -48,21 +48,21 @@ export default {
                 email:"",
                 password:""
             },
-            isLoading: false,
             db_error: [],
+            isSubmitting: false,
         }
     },
     methods: {
         login() {
-            this.isLoading = true
+            this.isSubmitting = true
             this.$store.dispatch("auth/login", this.user)
             .then( res => {
-                this.loading=false
+                this.isSubmitting=false
                 this.$router.push({ name: "home"})
                 console.log(res)
             })
-            .catch(error=> { console.log(error.message);
-                this.loading=false
+            .catch(error=> { 
+                this.isSubmitting=false
                 this.db_error = error.errors
                 this.$swal({
                     toast: true,

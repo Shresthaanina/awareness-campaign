@@ -6,7 +6,7 @@
                     <div class="col-md-3 col-sm-12">
                         <div class="brand">
                             <router-link :to="{ name: 'home' }">
-                                <img width="150" src="@/assets/images/logoo-awar.jpg" alt="Awarness Logo">
+                                <img width="150" v-if="!settingLoading" :src="settingPath + settings.logo" @error="setAltImage" alt="Awarness Logo">
                             </router-link>
                         </div>
                     </div>
@@ -43,7 +43,7 @@
             <div class="container">
                 <div class="brand">
                     <router-link :to="{ name: 'home' }">
-                        <img src="@/assets/images/logo.png" alt="Magz Logo">
+                        <img v-if="!settingLoading" :src="settingPath + settings.logo" @error="setAltImage" alt="Awareness Logo">
                     </router-link>
                 </div>
                 <div class="mobile-toggle">
@@ -56,7 +56,7 @@
                     <ul class="nav-list">
                         <li><a href="javascript:void(0)" @click="filterCampaignList()">All</a></li>
                         <li v-for="(category,c) in categoryList" :key="c"><a href="javascript:void(0);" @click="filterCampaignList(category.id)">{{ category.name }}</a></li>
-                        <li class="dropdown magz-dropdown"><a href="#">My Account <i class="ion-ios-arrow-right"></i></a>
+                        <li v-if="isAuthenticated" class="dropdown magz-dropdown"><a href="#">My Account <i class="ion-ios-arrow-right"></i></a>
                             <ul class="dropdown-menu">
                                 <li><router-link :to="{ name: 'profile' }"><i class="icon ion-person"></i> Profile</router-link></li>
                                 <li><router-link :to="{ name: 'my-campaigns' }"><i class="icon ion-heart"></i> My Campaigns</router-link></li>
@@ -77,14 +77,22 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 export default {
+    data() {
+        return {
+            settingPath: process.env.VUE_APP_SETTING_PATH,
+        }
+    },
     computed: {
         ...mapGetters("auth", ["accountDetail","isAuthenticated"]),
-        ...mapGetters("campaign", ["categoryList"]),
+        ...mapGetters("campaign", ["categoryList","categoryLoading"]),
+        ...mapGetters("setting", ["settings","settingLoading"]),
     },
     created(){
+        this.fetchSettings()
         this.getCategoryList()
     },
     methods: {
+        ...mapActions('setting', ['fetchSettings']),
         ...mapActions('campaign', [
             'getCategoryList',
             'fetchCampaigns',
@@ -96,6 +104,9 @@ export default {
                 this.$router.push({ name: 'home' })
             }
             this.fetchCampaigns()
+        },
+        setAltImage(e){
+            e.target.src = 'https://dummyimage.com/763x242&text=WEBEX'
         }
     },
     mounted() {

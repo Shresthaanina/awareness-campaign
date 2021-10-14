@@ -47,7 +47,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="offset-sm-4 col-md-2">
-                                            <button type="submit" class="btn btn-primary" :disabled="isSubmitting">Update</button>
+                                            <button type="submit" class="btn btn-primary" :disabled="isSubmitting">Update <img v-if="isSubmitting" src="@/assets/images/spinner.svg" style="height:23px; position:absolute;"></button>
                                         </div>
                                     </div>
                                 </form>

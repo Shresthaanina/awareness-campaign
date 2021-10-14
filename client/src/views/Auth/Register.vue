@@ -63,7 +63,7 @@
                                 <span class="invalid-feedback" style="display:block;" role="alert" v-if="db_error && db_error.confirm_password">{{ db_error.confirm_password[0] }}</span>
                             </div>
                             <div class="form-group text-right">
-                                <button type="submit" class="btn btn-primary btn-block">Register</button>
+                                <button type="submit" class="btn btn-primary btn-block" :disabled="isSubmitting">Register <img v-if="isSubmitting" src="@/assets/images/spinner.svg" style="height:23px; position:absolute;"></button>
                             </div>
                             <div class="form-group text-center">
                                 <span class="text-muted">Already have an account?</span> <router-link :to="{ name: 'login' }">Login</router-link>
@@ -87,13 +87,13 @@ export default {
                 password:"",
                 confirm_password:"",
             },
-            isLoading: false,
+            isSubmitting: false,
             db_error: [],
         }
     },
     methods: {
         register() { 
-            this.isLoading = true
+            this.isSubmitting = true
             this.db_error = []
             this.$store.dispatch("auth/register", this.user)
             .then( res => {
@@ -105,11 +105,11 @@ export default {
                     icon: "success", //built in icons: success, warning, error, info
                     timer: 4000, //timeOut for auto-close
                 });
-                this.isLoading=false
+                this.isSubmitting=false
                 this.$router.push({ name: "login"})
             })
             .catch(error=> {
-                this.isLoading=false
+                this.isSubmitting=false
                 this.db_error = error.errors
             })
         }

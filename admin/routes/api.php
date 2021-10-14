@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\Auth\PassportAuthController;
 use App\Http\Controllers\Api\Banner\BannerController;
 use App\Http\Controllers\Api\Campaign\CampaignController;
 use App\Http\Controllers\Api\Category\CategoryController;
+use App\Http\Controllers\Api\Setting\SettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,7 @@ Route::post('register', [PassportAuthController::class, 'register'])->name('regi
 // Route::post('password/reset', [PassportAuthController::class, 'resetPassword'])->name('reset_password');
 
 Route::group(['prefix' => 'v1'], function(){
+    Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
     Route::get('/campaigns', [CampaignController::class, 'index'])->name('campaigns.index');
     Route::get('/campaigns/{slug}', [CampaignController::class, 'show'])->name('campaigns.show');
     Route::get('/recent_campaigns', [CampaignController::class, 'recent'])->name('campaigns.recent');

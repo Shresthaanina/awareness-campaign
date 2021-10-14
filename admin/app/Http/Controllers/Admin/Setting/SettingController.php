@@ -6,6 +6,7 @@ use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class SettingController extends Controller
 {
@@ -102,6 +103,7 @@ class SettingController extends Controller
         foreach($data as $key => $val){
             $this->setting::where('meta_key', $key)->update(['meta_value' => $val]);
         }
+        Cache::forget('settings');
         toast('Setting data updated successfully.','success');
         return redirect()->route('settings.index');
     }
