@@ -51,21 +51,11 @@
                                     <i class="ion-social-twitter"></i> Twitter
                                 </a>
                             </li>
-                            <li>
-                                <a href="#" class="googleplus">
-                                    <i class="ion-social-googleplus"></i> Google+
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="linkedin">
-                                    <i class="ion-social-linkedin"></i> Linkedin
-                                </a>
-                            </li>
-                            <li>
+                            <!-- <li>
                                 <a href="#" class="skype">
                                     <i class="ion-ios-email-outline"></i> Email
                                 </a>
-                            </li>
+                            </li> -->
                             <!-- <li class="count">
                                 20
                                 <div>Shares</div>
@@ -110,6 +100,11 @@ export default {
     },
     created(){
         this.fetchCampaignDetail(this.$route.params.slug)
+    },
+    watch: { 
+        '$route.params.slug': function(slug) {
+            this.fetchCampaignDetail(this.$route.params.slug)
+        }
     },
     methods: {
         ...mapActions('campaign', [
